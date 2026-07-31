@@ -1,0 +1,558 @@
+/**
+ * Purpose: Single Source of Truth - Global Design System & Foundations
+ * Responsibilities: Establish a production-grade, mobile-first design system with design tokens, layout primitives, component foundations, and utilities.
+ * Version: 2.0.0
+ */
+
+/* ==========================================================
+   CSS RESET
+========================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 100%; /* Fallback for older browsers */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/*
+ * Smooth scrolling only during focus-based navigation (keyboard, anchor links).
+ * Applying scroll-behavior: smooth globally on html causes the browser's
+ * scroll-anchoring corrections (triggered by mobile address bar layout shifts)
+ * to animate visibly, producing a "rubber-band" snap-back effect on mobile.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  html:focus-within {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text-primary);
+  background-color: var(--color-background);
+  line-height: var(--line-height-base);
+  min-height: 100vh;
+  min-height: 100dvh; /* Modern mobile-safe fallback */
+  overflow-x: clip; /* Clips overflow without creating a scroll container (avoids iOS Safari scroll interference) */
+  text-rendering: optimizeSpeed;
+}
+
+img,
+picture,
+video,
+canvas,
+svg:not(a svg, button svg, .badge svg) {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+
+/* Inherit fonts for form control elements */
+input, button, textarea, select {
+  font: inherit;
+}
+
+/* Remove default padding from native table */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+
+/* ==========================================================
+   ROOT DESIGN TOKENS
+========================================================== */
+:root {
+  /* --------------------------------------------------------
+     COLOR SYSTEM
+     -------------------------------------------------------- */
+  /* Brand Identity */
+  --color-primary: #1A1A1A;
+  --color-secondary: #333333;
+  --color-accent: #B8860B; /* Premium luxury gold */
+  --color-accent-hover: #996515;
+
+  /* Surfaces & Backgrounds */
+  --color-surface: #FFFFFF;
+  --color-surface-hover: #F8F9FA;
+  --color-background: #FAFAFA;
+  --color-card-background: #FFFFFF;
+  
+  /* Borders & Dividers */
+  --color-border: #E5E7EB;
+  --color-divider: #F3F4F6;
+  
+  /* Typography Colors */
+  --color-text-primary: #111827;
+  --color-text-secondary: #4B5563;
+  --color-text-muted: #9CA3AF;
+  
+  /* Status Colors */
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-error: #EF4444;
+  
+  /* Interactions & Overlays */
+  --color-focus-ring: rgba(184, 134, 11, 0.4);
+  --color-overlay: rgba(17, 24, 39, 0.7);
+
+  /* --------------------------------------------------------
+     TYPOGRAPHY SYSTEM
+     -------------------------------------------------------- */
+  /* Fonts */
+  --font-heading: 'Manrope', 'Plus Jakarta Sans', 'General Sans', sans-serif;
+  --font-body: 'Inter', 'DM Sans', sans-serif;
+
+  /* Fluid Font Sizes (Mobile to Desktop) */
+  --text-xs: clamp(0.75rem, 0.7vw + 0.1rem, 0.875rem);
+  --text-sm: clamp(0.875rem, 0.8vw + 0.1rem, 1rem);
+  --text-base: clamp(1rem, 1vw + 0.1rem, 1.125rem);
+  --text-lg: clamp(1.125rem, 1.2vw + 0.1rem, 1.25rem);
+  --text-xl: clamp(1.25rem, 1.5vw + 0.1rem, 1.5rem);
+  --text-2xl: clamp(1.5rem, 2vw + 0.1rem, 2rem);
+  --text-3xl: clamp(2rem, 3vw + 0.1rem, 2.5rem);
+  --text-4xl: clamp(2.5rem, 4vw + 0.1rem, 3.5rem);
+  --text-5xl: clamp(3rem, 5vw + 1rem, 4.5rem);
+
+  /* Font Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Line Heights */
+  --line-height-tight: 1.1;
+  --line-height-snug: 1.3;
+  --line-height-base: 1.6;
+  --line-height-loose: 1.8;
+
+  /* Letter Spacing */
+  --tracking-tighter: -0.04em;
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0em;
+  --tracking-wide: 0.05em;
+  --tracking-wider: 0.1em;
+  --tracking-widest: 0.2em;
+
+  /* --------------------------------------------------------
+     SPACING SCALE
+     -------------------------------------------------------- */
+  /* Fluid and predictable spacing units based on 4px grid */
+  --space-1: 0.25rem;  /* 4px */
+  --space-2: 0.5rem;   /* 8px */
+  --space-3: 0.75rem;  /* 12px */
+  --space-4: 1rem;     /* 16px */
+  --space-6: 1.5rem;   /* 24px */
+  --space-8: 2rem;     /* 32px */
+  --space-12: 3rem;    /* 48px */
+  --space-16: 4rem;    /* 64px */
+  --space-24: 6rem;    /* 96px */
+  --space-32: 8rem;    /* 128px */
+  --space-48: 12rem;   /* 192px */
+  --space-64: 16rem;   /* 256px */
+  --space-96: 24rem;   /* 384px */
+
+  /* --------------------------------------------------------
+     BORDER RADIUS
+     -------------------------------------------------------- */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-pill: 9999px;
+  --radius-full: var(--radius-pill);
+  --radius-circle: 50%;
+
+  /* --------------------------------------------------------
+     SHADOWS (ELEVATION)
+     -------------------------------------------------------- */
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+
+  /* --------------------------------------------------------
+     Z-INDEX SCALE
+     -------------------------------------------------------- */
+  --z-hide: -1;
+  --z-base: 0;
+  --z-dropdown: 1000;
+  --z-sticky: 1100;
+  --z-fixed: 1200;
+  --z-overlay: 1300;
+  --z-modal: 1400;
+  --z-toast: 1500;
+
+  /* --------------------------------------------------------
+     CONTAINER SYSTEM
+     -------------------------------------------------------- */
+  --container-max-width: 1440px;
+  --container-narrow: 800px;
+  --container-wide: 1600px;
+  --container-padding: clamp(var(--space-4), 5vw, var(--space-16));
+  
+  --header-height: 80px;
+  --header-height-scrolled: 64px;
+
+  /* --------------------------------------------------------
+     ANIMATION TOKENS
+     -------------------------------------------------------- */
+  --duration-fast: 150ms;
+  --duration-base: 300ms;
+  --duration-slow: 500ms;
+  
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  
+  /* Fallback for old variables */
+  --transition-fast: var(--duration-fast) var(--ease-standard);
+  --transition-base: var(--duration-base) var(--ease-standard);
+  --transition-slow: var(--duration-slow) var(--ease-standard);
+}
+
+
+/* ==========================================================
+   TYPOGRAPHY SYSTEM
+========================================================== */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-4);
+  letter-spacing: var(--tracking-tight);
+}
+
+h1, .text-h1 { font-size: var(--text-4xl); }
+h2, .text-h2 { font-size: var(--text-3xl); }
+h3, .text-h3 { font-size: var(--text-2xl); }
+h4, .text-h4 { font-size: var(--text-xl); }
+h5, .text-h5 { font-size: var(--text-lg); }
+h6, .text-h6 { font-size: var(--text-base); }
+
+p {
+  margin-bottom: var(--space-4);
+  color: var(--color-text-secondary);
+}
+
+.text-lead {
+  font-size: var(--text-lg);
+  line-height: var(--line-height-base);
+  color: var(--color-text-secondary);
+}
+
+.text-small {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+.text-caption {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+
+/* ==========================================================
+   LAYOUT SYSTEM
+========================================================== */
+.main-container {
+  width: 100%;
+  max-width: clamp(1440px, 95vw, 1920px); /* Safely boxes ultra-wide displays */
+  margin-inline: auto;
+  padding-inline: var(--container-padding);
+  box-sizing: border-box;
+  overflow: clip; /* Modern alternative to hidden */
+  display: flex;
+  flex-direction: column;
+}
+
+/* 
+  Full-bleed technique:
+  Pulls sections out to the container edges to allow backgrounds to bleed,
+  while pushing the inner content back in for perfect alignment.
+*/
+.main-container > section {
+  margin-inline: calc(var(--container-padding) * -1);
+  padding-inline: var(--container-padding);
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin-inline: auto;
+  padding-inline: var(--container-padding);
+}
+
+.container--narrow {
+  max-width: var(--container-narrow);
+}
+
+.container--wide {
+  max-width: var(--container-wide);
+}
+
+/* Vertical Rhythm Helpers */
+.section-padding {
+  padding-block: var(--space-16);
+}
+
+@media (min-width: 768px) {
+  .section-padding {
+    padding-block: var(--space-24);
+  }
+}
+
+@media (min-width: 1920px) {
+  .section-padding {
+    padding-block: var(--space-32);
+  }
+}
+
+/* Flow: Consistently spaces out direct children vertically */
+.flow > * + * {
+  margin-block-start: var(--flow-space, var(--space-6));
+}
+
+/* Stack: Vertical flex layout */
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--stack-gap, var(--space-4));
+}
+
+/* Cluster: Horizontal flex layout that wraps */
+.cluster {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--cluster-gap, var(--space-4));
+  align-items: center;
+}
+
+
+/* ==========================================================
+   GRID SYSTEM
+========================================================== */
+.grid {
+  display: grid;
+  gap: var(--grid-gap, var(--space-6));
+}
+
+/* Responsive Auto-Fit Grid */
+.grid-auto-fit {
+  display: grid;
+  gap: var(--grid-gap, var(--space-6));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--grid-min-col, 300px)), 1fr));
+}
+
+/* Mobile-first explicit columns */
+.grid-2-col,
+.grid-3-col,
+.grid-4-col {
+  display: grid;
+  gap: var(--grid-gap, var(--space-6));
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .grid-2-col { grid-template-columns: repeat(2, 1fr); }
+  .grid-3-col { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (min-width: 1024px) {
+  .grid-4-col { grid-template-columns: repeat(4, 1fr); }
+}
+
+
+/* ==========================================================
+   FORM ELEMENTS FOUNDATION
+========================================================== */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+label {
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+textarea,
+select {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--color-text-primary);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: border-color var(--duration-fast) var(--ease-standard),
+              box-shadow var(--duration-fast) var(--ease-standard);
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px var(--color-focus-ring);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--color-text-muted);
+}
+
+
+/* ==========================================================
+   BUTTON FOUNDATIONS
+========================================================== */
+/* Generic structural foundation for all buttons */
+.btn-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  text-align: center;
+  border-radius: var(--radius-pill);
+  transition: all var(--duration-base) var(--ease-standard);
+  text-decoration: none;
+}
+
+.btn-base:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+
+/* ==========================================================
+   UTILITIES
+========================================================== */
+/* Accessibility: Screen Reader Only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Accessibility: SR Only until focused (e.g. Skip Links) */
+.sr-only-focusable:focus,
+.sr-only-focusable:active {
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* Focus Indicator Utility */
+.focus-ring:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px var(--color-focus-ring);
+  border-radius: inherit;
+}
+
+/* Text Alignment */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+/* Display */
+.d-none { display: none; }
+.d-block { display: block; }
+.d-flex { display: flex; }
+
+/* Width/Height Helpers */
+.w-full { width: 100%; }
+.h-full { height: 100%; }
+
+/* Margin Auto */
+.mx-auto { margin-inline: auto; }
+
+
+/* ==========================================================
+   ANIMATIONS & TRANSITIONS
+========================================================== */
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+/* ==========================================================
+   RESPONSIVE ENHANCEMENTS
+========================================================== */
+/* 
+   Note: The design system is strictly mobile-first. 
+   Default styles apply to all screens.
+   Any specific breakpoint utility overrides should be placed here,
+   but layout shifts are handled fluidly or via min-width queries locally.
+*/

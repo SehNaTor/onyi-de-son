@@ -1,0 +1,605 @@
+/* ==========================================================================
+   Products Page Styles
+   ========================================================================== */
+
+/* Typography & Layout Utils */
+.pt-nav {
+  padding-top: var(--nav-height, 80px);
+}
+.eyebrow {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-accent, #e63946);
+  margin-bottom: 0.5rem;
+}
+.section-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  color: var(--color-text);
+}
+.section-desc {
+  font-size: 1.125rem;
+  color: var(--color-text-light);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+.max-w-md {
+  max-width: 48rem;
+}
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+.text-center {
+  text-align: center;
+}
+
+/* ==========================================================================
+   Hero Section
+   ========================================================================== */
+.prod-hero {
+  background-color: var(--color-surface);
+  position: relative;
+  overflow: hidden;
+}
+
+.prod-hero__container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+@media (min-width: 992px) {
+  .prod-hero__container {
+    grid-template-columns: 1fr 1.2fr;
+    gap: 4rem;
+  }
+}
+
+.prod-hero__title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 1.25rem;
+  color: var(--color-text);
+  letter-spacing: -0.02em;
+}
+
+.prod-hero__desc {
+  font-size: 1.25rem;
+  color: var(--color-text-light);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  max-width: 600px;
+}
+
+.prod-hero__actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.prod-hero__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: minmax(150px, auto);
+  gap: 1rem;
+  position: relative;
+}
+
+.prod-hero__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.prod-hero__img:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+}
+
+.prod-hero__img--large {
+  grid-row: span 2;
+  height: 100%;
+  min-height: 300px;
+}
+
+@media (max-width: 768px) {
+  .prod-hero__grid {
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 150px;
+  }
+  .prod-hero__img--large {
+    grid-row: span 1;
+    min-height: auto;
+  }
+}
+
+/* ==========================================================================
+   Carport Showcase Section
+   ========================================================================== */
+.carport-showcase {
+  margin-top: 6rem;
+  padding-top: 4rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.carport-showcase__content {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 3rem auto;
+}
+
+.carport-showcase__title {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 800;
+  margin-bottom: 1rem;
+  color: var(--color-text);
+}
+
+.carport-showcase__desc {
+  font-size: 1.125rem;
+  color: var(--color-text-light);
+  line-height: 1.6;
+}
+
+.carport-showcase__desc strong {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.carport-showcase__gallery {
+  /* No longer used directly, preserved for fallback if needed */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+/* Carousel specific classes */
+.carousel-container {
+  overflow: hidden;
+  width: 100%;
+  padding-bottom: 2rem;
+  margin: 0 auto;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 2rem;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
+}
+
+.carousel-track .carport-showcase__card {
+  flex: 0 0 calc(100% - 2rem);
+  min-width: 280px;
+}
+
+@media (min-width: 768px) {
+  .carousel-track .carport-showcase__card {
+    flex: 0 0 calc(50% - 1rem);
+  }
+}
+
+@media (min-width: 1024px) {
+  .carousel-track .carport-showcase__card {
+    flex: 0 0 calc(33.333% - 1.33rem);
+  }
+}
+
+.carport-showcase__card {
+  background: var(--color-surface);
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.carport-showcase__card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+}
+
+.carport-showcase__img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.carport-showcase__caption {
+  padding: 1.25rem 1rem;
+  font-weight: 700;
+  font-size: 1rem;
+  text-align: center;
+  color: var(--color-text);
+  border-top: 1px solid var(--color-border);
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ==========================================================================
+   Wallpaper Showcase Section
+   ========================================================================== */
+.wallpaper-showcase {
+  margin-top: 6rem;
+  padding-top: 4rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.wallpaper-showcase__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+@media (min-width: 992px) {
+  .wallpaper-showcase__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+}
+
+.wallpaper-showcase__title {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 800;
+  margin-bottom: 1.25rem;
+  color: var(--color-text);
+}
+
+.wallpaper-showcase__desc {
+  font-size: 1.125rem;
+  color: var(--color-text-light);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.wallpaper-showcase__desc strong {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.wallpaper-showcase__visual {
+  border-radius: 1.5rem;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+}
+
+.wallpaper-showcase__img {
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.wallpaper-showcase__visual:hover .wallpaper-showcase__img {
+  transform: scale(1.05);
+}
+
+
+/* ==========================================================================
+   Featured Products Section
+   ========================================================================== */
+.product-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+@media (min-width: 768px) {
+  .product-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+  }
+}
+
+.prod-card {
+  background-color: #fff;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.prod-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.prod-card__img-wrap {
+  width: 100%;
+  height: 320px;
+  overflow: hidden;
+}
+
+.prod-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.prod-card:hover .prod-card__img {
+  transform: scale(1.05);
+}
+
+.prod-card__content {
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.prod-card__badge {
+  display: inline-block;
+  padding: 0.35rem 0.8rem;
+  background-color: var(--color-primary, #1e3a8a);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+  align-self: flex-start;
+}
+
+.prod-card__title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--color-text);
+  line-height: 1.3;
+}
+
+.prod-card__desc {
+  font-size: 1rem;
+  color: var(--color-text-light);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+.prod-card__list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem 0;
+}
+
+.prod-card__list li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  color: var(--color-text);
+}
+
+.prod-card__list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--color-accent);
+  font-weight: 800;
+}
+
+.prod-card__btn {
+  align-self: flex-start;
+}
+
+/* ==========================================================================
+   Use Cases & Durability Section
+   ========================================================================== */
+.use-cases__container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+@media (min-width: 992px) {
+  .use-cases__container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.use-cases__list {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0 0 0;
+  display: grid;
+  gap: 1.25rem;
+}
+
+.use-cases__list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  font-size: 1.125rem;
+  color: var(--color-text);
+  line-height: 1.5;
+}
+
+.use-cases__list svg {
+  width: 24px;
+  height: 24px;
+  color: var(--color-accent);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.use-cases__list strong {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.use-cases__visual {
+  display: flex;
+  justify-content: center;
+}
+
+.durability-box {
+  background-color: var(--color-surface);
+  padding: 3rem;
+  border-radius: 1.5rem;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+  border: 1px solid rgba(0,0,0,0.05);
+  max-width: 400px;
+}
+
+.durability-icon {
+  width: 80px;
+  height: 80px;
+  background-color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem auto;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+
+.durability-icon svg {
+  width: 40px;
+  height: 40px;
+}
+
+.durability-box h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--color-text);
+}
+
+.durability-box p {
+  color: var(--color-text-light);
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   Partnerships Section
+   ========================================================================== */
+.partnership-gallery {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+@media (min-width: 768px) {
+  .partnership-gallery {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.partnership-figure {
+  margin: 0;
+  overflow: hidden;
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  background-color: #fff;
+}
+
+.partnership-figure img {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.partnership-figure:hover img {
+  transform: scale(1.05);
+}
+
+.partnership-figure figcaption {
+  padding: 1.25rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text);
+  background-color: #fff;
+  position: relative;
+  z-index: 1;
+}
+
+/* ==========================================================================
+   CTA Section
+   ========================================================================== */
+.cta-section {
+  background-color: var(--color-primary);
+  color: #fff;
+  padding: 6rem 2rem;
+}
+
+.cta-section__title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.cta-section__desc {
+  font-size: 1.25rem;
+  color: rgba(255,255,255,0.9);
+  max-width: 600px;
+  margin: 0 auto 2.5rem auto;
+  line-height: 1.6;
+}
+
+.cta-section__actions {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+/* Override btn styles for CTA section */
+.cta-section .btn-primary {
+  background-color: #fff;
+  color: var(--color-primary);
+}
+
+.cta-section .btn-primary:hover {
+  background-color: var(--color-surface);
+}
+
+.cta-section .btn-secondary {
+  border-color: rgba(255,255,255,0.5);
+  color: #fff;
+}
+
+.cta-section .btn-secondary:hover {
+  border-color: #fff;
+  background-color: rgba(255,255,255,0.1);
+}
+
+/* ==========================================================================
+   Animations
+   ========================================================================== */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}

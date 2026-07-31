@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery | Onyi De Son of Grace Nig Ltd</title>
+  
+  <meta name="description" content="View our gallery of premium tarpaulin, upholstery, and completed projects. High-quality materials and professional installations.">
+  
+  <!-- Preconnect to Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="./css/global.css">
+  <link rel="stylesheet" href="./css/navbar.css">
+  <link rel="stylesheet" href="./css/footer.css">
+  <link rel="stylesheet" href="./css/pages/gallery.css">
+</head>
+<body>
+
+  <!-- Navigation Component Root -->
+  <div data-navbar-root></div>
+
+  <!-- Main Content -->
+  <main class="main-container pt-nav">
+    
+    <!-- Gallery Hero Section -->
+    <section class="gallery-hero section-padding">
+      <div class="container text-center reveal-on-scroll">
+        <span class="eyebrow">Our Work</span>
+        <h1 class="gallery-hero__title">Project Gallery.</h1>
+        <p class="gallery-hero__desc max-w-md mx-auto">
+          Explore our collection of high-quality materials and completed projects across West Africa. Discover the durability and craftsmanship we bring to every installation.
+        </p>
+      </div>
+    </section>
+
+    <!-- Gallery Grid Section -->
+    <section class="gallery-section section-padding">
+      <div class="container">
+        <!-- The gallery items will be dynamically injected here -->
+        <div id="gallery-grid" class="gallery-grid">
+          <!-- Loading state -->
+          <div class="gallery-loading" id="gallery-loading">
+            <div class="spinner"></div>
+            <p>Loading gallery...</p>
+          </div>
+        </div>
+        
+        <!-- Empty State -->
+        <div id="gallery-empty" class="gallery-empty" style="display: none;">
+          <p>No images available at the moment.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Lightbox Modal -->
+  <div id="gallery-lightbox" class="gallery-lightbox" aria-hidden="true">
+    <div class="gallery-lightbox__overlay" id="lightbox-overlay"></div>
+    <button class="gallery-lightbox__close focus-ring" id="lightbox-close" aria-label="Close image">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+    <div class="gallery-lightbox__content">
+      <img src="" alt="" class="gallery-lightbox__image" id="lightbox-image">
+      <p class="gallery-lightbox__caption" id="lightbox-caption"></p>
+    </div>
+  </div>
+
+  <!-- Site Footer Root -->
+  <div data-site-footer></div>
+
+  <!-- Module Script Integration -->
+  <script type="module">
+    import Navbar from './js/components/navbar.js';
+    import { SiteFooter } from './js/components/site-footer.js';
+    import { initGalleryPage } from './js/pages/gallery.js';
+    
+    document.addEventListener('DOMContentLoaded', () => {
+      // Initialize core components
+      try {
+        new Navbar();
+      } catch (err) {
+        console.error('Navbar Initialization Error:', err);
+      }
+      
+      try {
+        new SiteFooter();
+      } catch (err) {
+        console.error('SiteFooter Initialization Error:', err);
+      }
+
+      // Initialize page specific logic
+      try {
+        initGalleryPage();
+      } catch (err) {
+        console.error('Gallery Page JS Error:', err);
+      }
+    });
+  </script>
+</body>
+</html>

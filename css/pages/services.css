@@ -1,0 +1,181 @@
+/**
+ * Services Page Styles
+ * Premium styling for service cards, grids, and multi-image layouts
+ */
+
+/* Hero Section */
+.services-hero {
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.services-hero__title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--color-text-primary);
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+.services-hero__desc {
+  font-size: 1.25rem;
+  color: var(--color-text-light);
+  line-height: 1.6;
+}
+
+/* Services Wrapper (Layout Container) */
+.services-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem; /* Vertical spacing between each service card */
+}
+
+/* Service Card (Premium Container) */
+.service-card {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  background-color: var(--color-background);
+  border-radius: var(--radius-lg, 16px);
+  overflow: hidden;
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05), 0 4px 10px -2px rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+              box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@media (min-width: 900px) {
+  .service-card {
+    grid-template-columns: 1fr 1fr; /* Image left, Content right */
+    gap: 0; /* Remove gap to let visuals fill one side completely */
+  }
+
+  /* Alternate layout for every even card (Content left, Image right) */
+  .service-card:nth-child(even) .service-card__visuals {
+    order: 2;
+  }
+  .service-card:nth-child(even) .service-card__content {
+    order: 1;
+  }
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 30px 50px -10px rgba(0, 0, 0, 0.1), 0 15px 20px -10px rgba(0, 0, 0, 0.04);
+}
+
+/* Visuals Area (Image/s) */
+.service-card__visuals {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9; /* Mobile aspect ratio */
+  overflow: hidden;
+  background-color: var(--color-surface);
+}
+
+@media (min-width: 900px) {
+  .service-card__visuals {
+    aspect-ratio: auto;
+    height: 100%;
+    min-height: 400px;
+  }
+}
+
+.service-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--duration-slow) var(--ease-standard);
+}
+
+/* Hover Zoom Effect on Images */
+.service-card:hover .service-card__img {
+  transform: scale(1.03);
+}
+
+/* Swiper Image Layout */
+.service-card__swiper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.service-card__swiper-wrapper {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
+}
+
+/* Utility to disable transition for seamless rewind */
+.service-card__swiper-wrapper.no-transition {
+  transition: none !important;
+}
+
+.service-card__swiper-slide {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Content Area */
+.service-card__content {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media (min-width: 900px) {
+  .service-card__content {
+    padding: 4rem; /* More spacious padding on desktop */
+  }
+}
+
+.service-card__title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-text-primary);
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.01em;
+}
+
+.service-card__desc {
+  font-size: 1.125rem;
+  color: var(--color-text-light);
+  line-height: 1.6;
+}
+
+/* Adding a subtle accent line to titles */
+.service-card__title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background-color: var(--color-accent);
+  margin-top: 1rem;
+  border-radius: 2px;
+}
+
+/* Reveal on Scroll Animations */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  filter: blur(5px);
+  transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), filter 0.8s ease-out;
+  will-change: opacity, transform, filter;
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
