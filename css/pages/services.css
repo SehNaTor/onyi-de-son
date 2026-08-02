@@ -25,6 +25,60 @@
   line-height: 1.6;
 }
 
+@media (max-width: 640px) {
+  .services-hero__title {
+    font-size: clamp(2rem, 7vw, 2.6rem);
+    margin-bottom: 1rem;
+  }
+
+  .services-hero__desc {
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+
+  .services-wrapper {
+    gap: 2.25rem;
+  }
+
+  .service-card {
+    gap: 1.25rem;
+    border-radius: 14px;
+  }
+
+  .service-card__content {
+    padding: 1.25rem 1.1rem 1.5rem;
+  }
+
+  .service-card__title {
+    font-size: 1.25rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .service-card__desc {
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+
+  .service-card__title::after {
+    width: 48px;
+    margin-top: 0.75rem;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1023px) {
+  .services-wrapper {
+    gap: 3rem;
+  }
+
+  .service-card__content {
+    padding: 2rem 2.25rem;
+  }
+
+  .service-card__visuals {
+    min-height: 320px;
+  }
+}
+
 /* Services Wrapper (Layout Container) */
 .services-wrapper {
   display: flex;

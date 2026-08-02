@@ -227,8 +227,8 @@ table {
   --container-wide: 1600px;
   --container-padding: clamp(var(--space-4), 5vw, var(--space-16));
   
-  --header-height: 80px;
-  --header-height-scrolled: 64px;
+  --header-height: 72px;
+  --header-height-scrolled: 60px;
 
   /* --------------------------------------------------------
      ANIMATION TOKENS
