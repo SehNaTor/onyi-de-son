@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | Onyi De Son of Grace Nig Ltd</title>
+  <meta name="description" content="Get in touch with Onyi De Son of Grace Nig Ltd for premium tarpaulin, upholstery, and industrial materials.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./css/global.css">
+  <link rel="stylesheet" href="./css/navbar.css">
+  <link rel="stylesheet" href="./css/footer.css">
+  <link rel="stylesheet" href="./css/pages/contact.css">
+</head>
+<body>
+  <div data-navbar-root></div>
+
+  <main class="main-container pt-nav">
+    <section class="contact-hero section-padding" aria-labelledby="contact-page-title">
+      <div class="container contact-hero__content reveal-on-scroll">
+        <span class="contact-hero__eyebrow">Contact Us</span>
+        <h1 id="contact-page-title" class="contact-hero__title">Let’s discuss your next project.</h1>
+        <p class="contact-hero__description">
+          Whether you need premium tarpaulin materials, canopies, upholstery support, or a reliable sourcing partner, our team is ready to help.
+        </p>
+      </div>
+    </section>
+
+    <section class="contact-section section-padding" aria-label="Contact information and form">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="contact-card contact-card--info reveal-on-scroll">
+            <div class="contact-card__header">
+              <span class="contact-card__eyebrow">Company Information</span>
+              <h2 class="contact-card__title">Onyi De Son of Grace Nig Ltd</h2>
+              <p class="contact-card__description">
+                A trusted supplier of premium tarpaulin, upholstery, and interior finishing materials across West Africa.
+              </p>
+            </div>
+
+            <ul class="contact-details" aria-label="Contact details">
+              <li class="contact-detail">
+                <span class="contact-detail__label">Office Address</span>
+                <a class="contact-detail__value" href="https://maps.google.com/?q=248+Agege+Motor+Road+Mushin" target="_blank" rel="noopener noreferrer">
+                  248 Agege Motor Road<br>
+                  Mushin, Lagos
+                </a>
+              </li>
+              <li class="contact-detail">
+                <span class="contact-detail__label">Phone Number</span>
+                <a class="contact-detail__value" href="tel:+2349161594257">09161594257</a>
+              </li>
+              <li class="contact-detail">
+                <span class="contact-detail__label">WhatsApp</span>
+                <a class="contact-detail__value" href="https://wa.me/2349161594257" target="_blank" rel="noopener noreferrer">09161594257</a>
+              </li>
+              <li class="contact-detail">
+                <span class="contact-detail__label">Email</span>
+                <a class="contact-detail__value" href="mailto:donatuschukwu202@gmail.com">donatuschukwu202@gmail.com</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="contact-card contact-card--form reveal-on-scroll">
+            <div class="contact-card__header">
+              <span class="contact-card__eyebrow">Send a Message</span>
+              <h2 class="contact-card__title">Tell us about your needs</h2>
+            </div>
+
+            <form id="contact-form" class="contact-form" novalidate>
+              <div class="form-group">
+                <label for="contact-name">Name</label>
+                <input id="contact-name" name="name" type="text" required placeholder="Your full name">
+              </div>
+
+              <div class="form-group">
+                <label for="contact-whatsapp">WhatsApp Number</label>
+                <input id="contact-whatsapp" name="whatsapp" type="tel" required placeholder="e.g. 09161594257">
+              </div>
+
+              <div class="form-group">
+                <label for="contact-description">Description</label>
+                <textarea id="contact-description" name="description" required placeholder="Describe your needs..."></textarea>
+              </div>
+
+              <div class="contact-actions">
+                <button id="contact-submit" class="btn-primary contact-form__submit" type="submit">Send Message</button>
+              </div>
+
+              <div id="contact-status" class="contact-status" role="status" aria-live="polite"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div data-site-footer></div>
+
+  <script type="module">
+    import Navbar from './js/components/navbar.js';
+    import { SiteFooter } from './js/components/site-footer.js';
+    import { initContactPage } from './js/pages/contact.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      try {
+        new Navbar();
+      } catch (error) {
+        console.error('Navbar Initialization Error:', error);
+      }
+
+      try {
+        new SiteFooter();
+      } catch (error) {
+        console.error('SiteFooter Initialization Error:', error);
+      }
+
+      try {
+        initContactPage();
+      } catch (error) {
+        console.error('Contact Page Initialization Error:', error);
+      }
+
+      const revealElements = document.querySelectorAll('.reveal-on-scroll');
+      if (revealElements.length > 0 && 'IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: 0.15,
+          rootMargin: '0px 0px -30px 0px'
+        });
+
+        revealElements.forEach((element) => observer.observe(element));
+      } else {
+        revealElements.forEach((element) => element.classList.add('is-visible'));
+      }
+    });
+  </script>
+</body>
+</html>

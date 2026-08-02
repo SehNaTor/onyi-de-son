@@ -142,7 +142,7 @@ table {
   --text-lg: clamp(1.125rem, 1.2vw + 0.1rem, 1.25rem);
   --text-xl: clamp(1.25rem, 1.5vw + 0.1rem, 1.5rem);
   --text-2xl: clamp(1.5rem, 2vw + 0.1rem, 2rem);
-  --text-3xl: clamp(2rem, 3vw + 0.1rem, 2.5rem);
+  --text-3xl: clamp(1.5rem, 3vw + 0.1rem, 2.5rem);
   --text-4xl: clamp(2.5rem, 4vw + 0.1rem, 3.5rem);
   --text-5xl: clamp(3rem, 5vw + 1rem, 4.5rem);
 
@@ -174,8 +174,10 @@ table {
   --space-2: 0.5rem;   /* 8px */
   --space-3: 0.75rem;  /* 12px */
   --space-4: 1rem;     /* 16px */
+  --space-5: 1.25rem;  /* 20px */
   --space-6: 1.5rem;   /* 24px */
   --space-8: 2rem;     /* 32px */
+  --space-10: 2.5rem;  /* 40px */
   --space-12: 3rem;    /* 48px */
   --space-16: 4rem;    /* 64px */
   --space-24: 6rem;    /* 96px */
@@ -191,6 +193,7 @@ table {
   --radius-md: 0.5rem;
   --radius-lg: 0.75rem;
   --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
   --radius-pill: 9999px;
   --radius-full: var(--radius-pill);
   --radius-circle: 50%;
@@ -556,3 +559,97 @@ textarea::placeholder {
    Any specific breakpoint utility overrides should be placed here,
    but layout shifts are handled fluidly or via min-width queries locally.
 */
+
+
+/* ==========================================================
+   LENIS SMOOTH SCROLL INTEGRATION
+========================================================== */
+/*
+ * Lenis overrides native scroll-behavior and manages smooth scrolling
+ * via requestAnimationFrame. These styles prevent conflicts between
+ * Lenis and the browser's native scroll-behavior implementation.
+ */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+
+/* ==========================================================
+   REUSABLE ANIMATION KEYFRAMES
+========================================================== */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+/* Stagger-ready reveal utility — use with .is-visible trigger */
+.stagger-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s var(--ease-out),
+              transform 0.6s var(--ease-out);
+}
+
+.stagger-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stagger-reveal:nth-child(1) { transition-delay: 0s; }
+.stagger-reveal:nth-child(2) { transition-delay: 0.1s; }
+.stagger-reveal:nth-child(3) { transition-delay: 0.2s; }
+.stagger-reveal:nth-child(4) { transition-delay: 0.3s; }
+.stagger-reveal:nth-child(5) { transition-delay: 0.4s; }
+

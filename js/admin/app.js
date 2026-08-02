@@ -1,11 +1,13 @@
 import { GalleryController } from './gallery.js';
 import { ProjectsController } from './projects.js';
+import { ContactsController } from './contacts.js';
 import { UI } from './ui.js';
 import { AuthService } from '../auth/authService.js';
 
 // Expose controllers and UI globally for inline HTML event handlers (e.g. onclick="window.GalleryController.editItem()")
 window.GalleryController = GalleryController;
 window.ProjectsController = ProjectsController;
+window.ContactsController = ContactsController;
 window.UI = UI;
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -66,6 +68,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       await GalleryController.renderView(contentArea);
     } else if (viewName === 'projects') {
       await ProjectsController.renderView(contentArea);
+    } else if (viewName === 'contacts') {
+      await ContactsController.renderView(contentArea);
     }
   };
 
@@ -81,18 +85,22 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 
   // Bind "Add New" Button
-  btnAddNew.addEventListener('click', () => {
-    if (currentView === 'gallery') {
-      GalleryController.showForm();
-    } else if (currentView === 'projects') {
-      ProjectsController.showForm();
-    }
-  });
+  if (btnAddNew) {
+    btnAddNew.addEventListener('click', () => {
+      if (currentView === 'gallery') {
+        GalleryController.showForm();
+      } else if (currentView === 'projects') {
+        ProjectsController.showForm();
+      }
+    });
+  }
 
   // Handle hash routing on load
   const hash = window.location.hash.replace('#', '');
   if (hash === 'projects') {
     loadView('projects');
+  } else if (hash === 'contacts') {
+    loadView('contacts');
   } else {
     loadView('gallery');
   }

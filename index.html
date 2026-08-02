@@ -21,12 +21,21 @@
 </head>
 <body>
 
-  <!-- Navigation Component Root -->
-  <div data-navbar-root></div>
+  <!-- ====================================================================
+       HEADER — Reusable Navigation Component
+       ==================================================================== -->
+  <header>
+    <div data-navbar-root></div>
+  </header>
 
-  <!-- Main Content -->
+  <!-- ====================================================================
+       MAIN CONTENT
+       ==================================================================== -->
   <main class="main-container">
-    <!-- Hero Section -->
+
+    <!-- ================================================================
+         HERO SECTION
+         ================================================================ -->
     <section class="hero" aria-label="Hero Introduction">
       <div class="hero__overlay" aria-hidden="true"></div>
 
@@ -49,7 +58,7 @@
             From large-scale event canopies to precision-crafted upholstery, we supply commercial-grade tarpaulin and finishing materials built to endure. Decades of industry expertise, delivered with reliability professionals depend on.
           </p>
           <div class="hero__actions">
-            <a href="contact.html" class="btn-primary hero__btn-primary focus-ring">Request a Quote</a>
+            <a href="contact.html" class="btn-primary hero__btn-primary focus-ring">Contact Us</a>
             <a href="products.html" class="btn-outline hero__btn-outline focus-ring">Explore Products</a>
           </div>
         </div>
@@ -57,7 +66,7 @@
 
       <!-- What We Do Sub-Section (within hero) -->
       <div class="hero-services" aria-label="What We Do">
-          <div class="hero-services__header">
+          <div class="hero-services__header reveal-on-scroll">
             <span class="hero-services__label">What We Do</span>
             <h2 class="hero-services__heading">Premium Tarpaulin Materials, Sourced Globally & Delivered With Confidence</h2>
             <p class="hero-services__description">
@@ -67,7 +76,7 @@
 
           <div class="hero-services__grid">
             <!-- Card 1: Product Range -->
-            <article class="hero-services__card">
+            <article class="hero-services__card reveal-on-scroll">
               <div class="hero-services__card-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                   <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
@@ -79,7 +88,7 @@
             </article>
 
             <!-- Card 2: Applications -->
-            <article class="hero-services__card">
+            <article class="hero-services__card reveal-on-scroll">
               <div class="hero-services__card-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
@@ -91,7 +100,7 @@
             </article>
 
             <!-- Card 3: Wholesale & Retail -->
-            <article class="hero-services__card">
+            <article class="hero-services__card reveal-on-scroll">
               <div class="hero-services__card-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                   <circle cx="9" cy="21" r="1"></circle>
@@ -102,46 +111,10 @@
               <h3 class="hero-services__card-title">Wholesale & Retail</h3>
               <p class="hero-services__card-text">Available in both wholesale volumes for distributors and contractors, and retail quantities for individuals and small businesses.</p>
             </article>
-
-            <!-- Card 4: Competitive Pricing -->
-            <article class="hero-services__card">
-              <div class="hero-services__card-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="12" y1="1" x2="12" y2="23"></line>
-                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-                </svg>
-              </div>
-              <h3 class="hero-services__card-title">Transparent Pricing</h3>
-              <p class="hero-services__card-text">Pricing determined by material quality, roll dimensions, and order volume ensuring you always receive fair, competitive rates.</p>
-            </article>
-
-            <!-- Card 5: Durability -->
-            <article class="hero-services__card">
-              <div class="hero-services__card-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                </svg>
-              </div>
-              <h3 class="hero-services__card-title">Built to Endure</h3>
-              <p class="hero-services__card-text">Every material is selected for exceptional weather resistance, UV protection, and heavy-duty performance across demanding environments.</p>
-            </article>
-
-            <!-- Card 6: Trusted Sourcing -->
-            <article class="hero-services__card">
-              <div class="hero-services__card-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <line x1="2" y1="12" x2="22" y2="12"></line>
-                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-                </svg>
-              </div>
-              <h3 class="hero-services__card-title">Globally Sourced</h3>
-              <p class="hero-services__card-text">Premium tarpaulin sourced from certified manufacturers in the USA, South Korea, and other global leaders in industrial-grade fabric production.</p>
-            </article>
           </div>
 
           <!-- Trust Indicators -->
-          <div class="hero-services__trust">
+          <div class="hero-services__trust reveal-on-scroll">
             <div class="hero-services__trust-item">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <polyline points="20 6 9 17 4 12"></polyline>
@@ -170,7 +143,9 @@
       </div>
     </section>
 
-    <!-- Featured Products Section -->
+    <!-- ================================================================
+         FEATURED PRODUCTS SECTION
+         ================================================================ -->
     <section class="products section-padding" id="featured-products" aria-labelledby="products-heading" style="background: linear-gradient(280deg, #e9ecef 20%, #f8f9fa 100%);">
         <div class="products__header reveal-on-scroll">
           <span class="products__label">Our Products</span>
@@ -190,10 +165,6 @@
                 class="product-card__image"
                 loading="lazy"
               >
-              <!-- <span class="product-card__badge">
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                Premium
-              </span> -->
             </div>
             <div class="product-card__content">
               <h3 class="product-card__name">Premium Tarpaulin Materials</h3>
@@ -237,10 +208,6 @@
                 class="product-card__image"
                 loading="lazy"
               >
-               <!-- <span class="product-card__badge">
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                Best Seller
-              </span> -->
             </div> 
             <div class="product-card__content">
               <h3 class="product-card__name">Car Port Materials</h3>
@@ -288,14 +255,23 @@
         </div>
     </section>
 
+    <!-- ================================================================
+         COMPLETED PROJECTS SECTION (Supabase-driven)
+         ================================================================ -->
     <section class="completed-projects section-padding" aria-labelledby="completed-projects-heading">
       <div class="completed-projects__shell" data-completed-projects></div>
     </section>
 
-    <section class="cac-section section-padding reveal-on-scroll" aria-labelledby="cac-heading">
-      <div class="cac-section__card">
+    <!-- ================================================================
+         CAC CERTIFICATE SECTION — Premium Trust Component
+         ================================================================ -->
+    <section class="cac-section section-padding" aria-labelledby="cac-heading">
+      <div class="cac-section__container reveal-on-scroll">
+        
+        <!-- Left Column: Content -->
         <div class="cac-section__content">
           <div class="cac-section__icon-wrapper" aria-hidden="true">
+            <div class="cac-section__icon-pulse"></div>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
               <path d="M9 12l2 2 4-4"></path>
@@ -304,21 +280,63 @@
           <span class="cac-section__eyebrow">Verified Corporate Identity</span>
           <h2 id="cac-heading" class="cac-section__heading">Corporate Affairs Commission Certificate</h2>
           <p class="cac-section__text">
-            Our business is registered and verified by the Corporate Affairs Commission. This certification reflects our unwavering commitment to transparency, legal compliance, and building long-term trust with our clients.
+            Our business is fully registered and verified by the Corporate Affairs Commission of Nigeria. This certification reflects our unwavering commitment to transparency, legal compliance, and building long-term trust with every client we serve.
           </p>
-          <a href="https://res.cloudinary.com/vwrjamwn/image/upload/v1785046496/IMG-20260721-WA0012_pdbwzf.jpg" target="_blank" rel="noopener noreferrer" class="cac-section__button focus-ring">
-            View Our Certificate
+          <a href="https://res.cloudinary.com/vwrjamwn/image/upload/v1785046496/IMG-20260721-WA0012_pdbwzf.jpg" target="_blank" rel="noopener noreferrer" class="cac-section__button focus-ring" id="cta-view-certificate">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M14 3h7v7"></path>
               <path d="M10 14L21 3"></path>
               <path d="M21 14v7H3V3h7"></path>
             </svg>
+            View Our Certificate
           </a>
         </div>
+
+        <!-- Right Column: Trust Badges -->
+        <div class="cac-section__badges" aria-label="Trust indicators">
+          <div class="cac-section__badge">
+            <div class="cac-section__badge-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </div>
+            <div class="cac-section__badge-content">
+              <strong>CAC Registered</strong>
+              <span>Officially registered with the Corporate Affairs Commission of Nigeria</span>
+            </div>
+          </div>
+          <div class="cac-section__badge">
+            <div class="cac-section__badge-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </div>
+            <div class="cac-section__badge-content">
+              <strong>Legally Compliant</strong>
+              <span>Operating in full compliance with Nigerian business regulations</span>
+            </div>
+          </div>
+          <div class="cac-section__badge">
+            <div class="cac-section__badge-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              </svg>
+            </div>
+            <div class="cac-section__badge-content">
+              <strong>Transparent Operations</strong>
+              <span>Committed to openness, accountability, and professional integrity</span>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
-    <!-- Mission & Vision Section -->
+    <!-- ================================================================
+         MISSION & VISION SECTION
+         ================================================================ -->
     <section class="mission-vision section-padding" aria-labelledby="mission-vision-heading">
         <div class="mission-vision__header reveal-on-scroll">
           <h2 id="mission-vision-heading" class="mission-vision__heading">What Drives Us</h2>
@@ -360,38 +378,56 @@
         </div>
     </section>
 
+    <!-- ================================================================
+         WHO WE ARE SECTION — Premium Brand Story
+         ================================================================ -->
     <section class="who-we-are section-padding" aria-labelledby="who-we-are-heading">
-      <div class="who-we-are__card reveal-on-scroll">
-        <div class="who-we-are__content">
-          <span class="who-we-are__eyebrow">Who We Are</span>
-          <h2 id="who-we-are-heading" class="who-we-are__heading">Trusted By Industry Professionals For Nearly A Decade</h2>
-          <p class="who-we-are__text">
-            Onyi De Son of Grace Nig Ltd has built a strong reputation in the tarpaulin industry over more than 9 years of hands-on experience. Our work has been shaped by a deep understanding of premium materials, dependable execution, and long-term partnerships across the sector.
-          </p>
-          <p class="who-we-are__text">
-            We have collaborated with trusted external partners in tarpaulin-related projects across countries including South Korea and America, including Starflex in South Korea and Hailmary Global Concept Nigeria.
-          </p>
-        </div>
-        <div class="who-we-are__highlights" aria-label="Brand strengths">
-          <div class="who-we-are__highlight">
-            <strong>9+ Years</strong>
-            <span>Industry experience</span>
+      <div class="who-we-are__container">
+        <div class="who-we-are__card reveal-on-scroll">
+          <div class="who-we-are__content">
+            <span class="who-we-are__eyebrow">Who We Are</span>
+            <h2 id="who-we-are-heading" class="who-we-are__heading">Trusted By Industry Professionals For Nearly A Decade</h2>
+            <p class="who-we-are__text">
+              Onyi De Son of Grace Nig Ltd has built a strong reputation in the tarpaulin industry over more than 9 years of hands-on experience. Our work has been shaped by a deep understanding of premium materials, dependable execution, and long-term partnerships across the sector.
+            </p>
+            <p class="who-we-are__text">
+              We have collaborated with trusted external partners in tarpaulin-related projects across countries including South Korea and America, including Starflex in South Korea and Hailmary Global Concept Nigeria.
+            </p>
           </div>
-          <div class="who-we-are__highlight">
-            <strong>Global Partners</strong>
-            <span>South Korea & America</span>
-          </div>
-          <div class="who-we-are__highlight">
-            <strong>Trusted Collaborators</strong>
-            <span>Starflex & Hailmary Global Concept</span>
+          <div class="who-we-are__highlights" aria-label="Brand strengths">
+            <div class="who-we-are__highlight stagger-reveal">
+              <div class="who-we-are__highlight-accent" aria-hidden="true"></div>
+              <strong>9+ Years</strong>
+              <span>Industry experience delivering premium tarpaulin solutions across West Africa</span>
+            </div>
+            <div class="who-we-are__highlight stagger-reveal">
+              <div class="who-we-are__highlight-accent" aria-hidden="true"></div>
+              <strong>Global Partners</strong>
+              <span>Strategic partnerships with manufacturers in South Korea & America</span>
+            </div>
+            <div class="who-we-are__highlight stagger-reveal">
+              <div class="who-we-are__highlight-accent" aria-hidden="true"></div>
+              <strong>Trusted Collaborators</strong>
+              <span>Working with Starflex & Hailmary Global Concept on international projects</span>
+            </div>
           </div>
         </div>
       </div>
     </section>
+
   </main>
 
-  <!-- Site Footer Placeholder -->
-  <div data-site-footer></div>
+  <!-- ====================================================================
+       FOOTER — Reusable Footer Component
+       ==================================================================== -->
+  <footer>
+    <div data-site-footer></div>
+  </footer>
+
+  <!-- ====================================================================
+       LENIS SMOOTH SCROLL — CDN Integration
+       ==================================================================== -->
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
 
   <!-- Module Script Integration -->
   <script type="module">
@@ -419,15 +455,52 @@
         console.error('CompletedProjectsSection Initialization Error:', err);
       }
 
+      // ============================================================
+      // LENIS — Global Smooth Scroll Initialization
+      // ============================================================
+      try {
+        const lenis = new Lenis({
+          duration: 1.2,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          orientation: 'vertical',
+          gestureOrientation: 'vertical',
+          smoothWheel: true,
+          wheelMultiplier: 1,
+          touchMultiplier: 2,
+          infinite: false
+        });
+
+        // Expose globally so Navbar can stop/start for mobile menu
+        window.lenis = lenis;
+
+        function raf(time) {
+          lenis.raf(time);
+          requestAnimationFrame(raf);
+        }
+
+        requestAnimationFrame(raf);
+      } catch (err) {
+        console.warn('Lenis Initialization Warning:', err);
+        // Site works perfectly fine without Lenis — graceful degradation
+      }
+
+      // ============================================================
       // Scroll Reveal Animation with IntersectionObserver
-      const revealElements = document.querySelectorAll('.reveal-on-scroll');
+      // ============================================================
+      const revealElements = document.querySelectorAll('.reveal-on-scroll, .stagger-reveal');
+      const serviceCards = document.querySelectorAll('.hero-services__card');
       
       if (revealElements.length > 0 && 'IntersectionObserver' in window) {
         const revealObserver = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
+          entries.forEach((entry, index) => {
             if (entry.isIntersecting) {
-              entry.target.classList.add('is-visible');
-              revealObserver.unobserve(entry.target); // Animate once
+              if (entry.target.classList.contains('hero-services__card')) {
+                const delay = Math.min(index * 80, 240);
+                window.setTimeout(() => entry.target.classList.add('is-visible'), delay);
+              } else {
+                entry.target.classList.add('is-visible');
+              }
+              revealObserver.unobserve(entry.target);
             }
           });
         }, {
@@ -439,6 +512,7 @@
       } else {
         // Fallback: show all elements if IntersectionObserver is not supported
         revealElements.forEach(el => el.classList.add('is-visible'));
+        serviceCards.forEach((card) => card.classList.add('is-visible'));
       }
     });
   </script>
