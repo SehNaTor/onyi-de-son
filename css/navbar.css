@@ -485,16 +485,26 @@
   margin-top: auto;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: var(--space-3);
-  padding-top: var(--space-6);
+  padding-top: var(--space-4);
   border-top: 1px solid var(--color-border);
+}
+
+.nav__mobile-actions .btn-primary,
+.nav__mobile-actions .btn-secondary {
+  width: min(100%, 260px);
+  min-height: 48px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-inline: auto;
 }
 
 .nav__mobile-actions .btn-primary {
   padding: var(--space-4) var(--space-6);
   font-size: var(--text-base);
   font-weight: 600;
-  text-align: center;
 }
 
 .nav__mobile-actions .btn-secondary {
@@ -504,6 +514,21 @@
   background-color: var(--color-surface-hover);
   transition: background-color var(--transition-fast),
               color var(--transition-fast);
+}
+
+@media (max-width: 480px) {
+  .nav__mobile-menu {
+    padding: var(--space-4) var(--space-4) var(--space-6);
+  }
+
+  .nav__mobile-link {
+    font-size: var(--text-base);
+    padding-block: var(--space-3);
+  }
+
+  .nav__mobile-actions {
+    gap: var(--space-2);
+  }
 }
 
 .nav__mobile-actions .btn-secondary:hover {
