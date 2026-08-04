@@ -357,7 +357,7 @@
             </div>
             <h3 class="mission-vision__card-title">Our Mission</h3>
             <p class="mission-vision__card-text">
-              To be the most reliable source of premium tarpaulin and upholstery materials in West Africa — delivering products of exceptional durability, backed by knowledgeable service and an unwavering commitment to customer satisfaction. We continuously refine our sourcing, inventory, and expertise to ensure every client receives materials that perform beyond expectation.
+              To be the most reliable source of premium tarpaulin and upholstery materials in West Africa delivering products of exceptional durability, backed by knowledgeable service and an unwavering commitment to customer satisfaction. We continuously refine our sourcing, inventory, and expertise to ensure every client receives materials that perform beyond expectation.
             </p>
           </article>
 
@@ -434,6 +434,7 @@
     import Navbar from './js/components/navbar.js';
     import { CompletedProjectsSection } from './js/components/completed-projects-section.js';
     import { SiteFooter } from './js/components/site-footer.js';
+    import { initLenis } from './js/components/lenis.js';
     
     // Initialize Navigation & Components
     document.addEventListener('DOMContentLoaded', () => {
@@ -459,26 +460,7 @@
       // LENIS — Global Smooth Scroll Initialization
       // ============================================================
       try {
-        const lenis = new Lenis({
-          duration: 1.2,
-          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-          orientation: 'vertical',
-          gestureOrientation: 'vertical',
-          smoothWheel: true,
-          wheelMultiplier: 1,
-          touchMultiplier: 2,
-          infinite: false
-        });
-
-        // Expose globally so Navbar can stop/start for mobile menu
-        window.lenis = lenis;
-
-        function raf(time) {
-          lenis.raf(time);
-          requestAnimationFrame(raf);
-        }
-
-        requestAnimationFrame(raf);
+        initLenis();
       } catch (err) {
         console.warn('Lenis Initialization Warning:', err);
         // Site works perfectly fine without Lenis — graceful degradation

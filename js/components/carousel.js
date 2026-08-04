@@ -1,37 +1,110 @@
 export function initCarousel() {
   const container = document.querySelector('[data-carousel]');
   const track = document.querySelector('[data-carousel-track]');
-  
+  const prevButton = document.querySelector('[data-carousel-prev]');
+  const nextButton = document.querySelector('[data-carousel-next]');
+  const dotsContainer = document.querySelector('[data-carousel-dots]');
+
   if (!container || !track) return;
-  
-  // Calculate how many items can be shown based on container width
-  const items = Array.from(track.children);
-  const totalItems = items.length;
-  
-  if (totalItems === 0) return;
+
+  const slides = Array.from(track.children);
+  if (slides.length === 0) return;
 
   let currentIndex = 0;
-  
-  // Auto-swipe every 2 seconds
-  setInterval(() => {
-    // Check how many items are visible
-    const containerWidth = container.offsetWidth;
-    const itemWidth = items[0].offsetWidth;
-    const gap = parseFloat(window.getComputedStyle(track).gap) || 0;
-    
-    // Total space per item including gap
-    const advanceWidth = itemWidth + gap;
-    
-    // Calculate max index to avoid swiping past the end
-    const visibleItems = Math.max(1, Math.floor((containerWidth + gap) / advanceWidth));
-    const maxIndex = Math.max(0, totalItems - visibleItems);
-    
-    currentIndex++;
-    if (currentIndex > maxIndex) {
-      currentIndex = 0;
+  let startX = 0;
+  let isDragging = false;
+
+  const updateDots = () => {
+    if (!dotsContainer) return;
+
+    Array.from(dotsContainer.children).forEach((dot, index) => {
+      dot.classList.toggle('is-active', index === currentIndex);
+      dot.setAttribute('aria-current', index === currentIndex ? 'true' : 'false');
+    });
+  };
+
+  const updateCarousel = (index) => {
+    const safeIndex = (index + slides.length) % slides.length;
+    currentIndex = safeIndex;
+
+    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+    updateDots();
+
+    if (prevButton) {
+      prevButton.disabled = slides.length <= 1;
     }
-    
-    const translateValue = -(currentIndex * advanceWidth);
-    track.style.transform = `translateX(${translateValue}px)`;
-  }, 2000);
+
+    if (nextButton) {
+      nextButton.disabled = slides.length <= 1;
+    }
+  };
+
+  if (dotsContainer) {
+    dotsContainer.innerHTML = '';
+
+    slides.forEach((_, index) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'carousel-dot';
+      dot.setAttribute('aria-label', `Go to slide ${index + 1}`);
+      dot.addEventListener('click', () => updateCarousel(index));
+      dotsContainer.appendChild(dot);
+    });
+  }
+
+  if (prevButton) {
+    prevButton.addEventListener('click', () => updateCarousel(currentIndex - 1));
+  }
+
+  if (nextButton) {
+    nextButton.addEventListener('click', () => updateCarousel(currentIndex + 1));
+  }
+
+  container.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowRight') {
+      event.preventDefault();
+      updateCarousel(currentIndex + 1);
+    }
+
+    if (event.key === 'ArrowLeft') {
+      event.preventDefault();
+      updateCarousel(currentIndex - 1);
+    }
+  });
+
+  const getX = (event) => event.touches ? event.touches[0].clientX : event.clientX;
+
+  container.addEventListener('pointerdown', (event) => {
+    if (event.target.closest('button')) return;
+    isDragging = true;
+    startX = getX(event);
+    container.setPointerCapture(event.pointerId);
+  });
+
+  container.addEventListener('pointermove', (event) => {
+    if (!isDragging) return;
+    const deltaX = getX(event) - startX;
+    if (Math.abs(deltaX) > 8) {
+      event.preventDefault();
+    }
+  });
+
+  container.addEventListener('pointerup', (event) => {
+    if (!isDragging) return;
+
+    const deltaX = getX(event) - startX;
+    isDragging = false;
+
+    if (deltaX < -50) {
+      updateCarousel(currentIndex + 1);
+    } else if (deltaX > 50) {
+      updateCarousel(currentIndex - 1);
+    }
+  });
+
+  container.addEventListener('pointercancel', () => {
+    isDragging = false;
+  });
+
+  updateCarousel(0);
 }

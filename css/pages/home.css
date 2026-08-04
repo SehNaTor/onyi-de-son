@@ -34,18 +34,18 @@
   min-height: calc(100vh - var(--header-height));   /* Fallback for older browsers */
   min-height: calc(100svh - var(--header-height));  /* Stable on all mobile browsers */
   width: 100%;
-  padding-block: var(--space-8);
+  padding-block: var(--hero-padding-block-start-mobile) var(--hero-padding-block-end-mobile);
 }
 
 @media (min-width: 768px) {
   .hero__main {
-    padding-block: var(--space-16) var(--space-12);
+    padding-block: var(--hero-padding-block-start-tablet) var(--hero-padding-block-end-tablet);
   }
 }
 
 @media (min-width: 1024px) {
   .hero__main {
-    padding-block: var(--space-24) var(--space-16);
+    padding-block: var(--hero-padding-block-start-desktop) var(--hero-padding-block-end-desktop);
   }
 }
 
@@ -54,19 +54,12 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  /* Mobile-first premium overlay with rich gradients */
-  background: 
-    linear-gradient(135deg, rgba(17, 24, 39, 0.85) 0%, rgba(17, 24, 39, 0.95) 100%),
-    linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.4) 100%);
+  background: var(--hero-overlay-mobile);
 }
 
 @media (min-width: 768px) {
   .hero__overlay {
-    /* Desktop overlay with rich radial and linear layers for depth */
-    background: 
-      radial-gradient(circle at 70% 30%, rgba(184, 134, 11, 0.15) 0%, transparent 60%),
-      radial-gradient(circle at 30% 50%, rgba(17, 24, 39, 0.4) 0%, rgba(17, 24, 39, 0.85) 80%),
-      linear-gradient(to right, rgba(17, 24, 39, 0.98) 0%, rgba(17, 24, 39, 0.7) 50%, rgba(17, 24, 39, 0.3) 100%);
+    background: var(--hero-overlay-desktop);
   }
 }
 
@@ -389,7 +382,7 @@
 }
 
 .hero-services__heading {
-  font-size: clamp(1.4rem, 2.4vw, 2rem);
+  font-size: var(--text-h2);
   font-family: var(--font-heading);
   font-weight: var(--font-weight-bold);
   color: var(--color-surface);
@@ -638,7 +631,7 @@
 }
 
 .products__heading {
-  font-size: var(--text-3xl);
+  font-size: var(--text-h2);
   font-family: var(--font-heading);
   font-weight: var(--font-weight-bold);
   color: var(--color-text-primary);
@@ -1529,11 +1522,9 @@
     height: 80px;
   }
 
-  .who-we-are__container {
-    /* padding-bottom: var(--space-8); */
-  }
-
+  
   .who-we-are__card {
+  
     padding: var(--space-6) var(--space-5);
     gap: var(--space-8);
   }

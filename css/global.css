@@ -128,6 +128,19 @@ table {
   --color-focus-ring: rgba(184, 134, 11, 0.4);
   --color-overlay: rgba(17, 24, 39, 0.7);
 
+  /* Hero system shared across marketing pages */
+  --hero-overlay-mobile: linear-gradient(135deg, rgba(17, 24, 39, 0.85) 0%, rgba(17, 24, 39, 0.95) 100%), linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.4) 100%);
+  --hero-overlay-desktop: radial-gradient(circle at 70% 30%, rgba(184, 134, 11, 0.15) 0%, transparent 60%), radial-gradient(circle at 30% 50%, rgba(17, 24, 39, 0.4) 0%, rgba(17, 24, 39, 0.85) 80%), linear-gradient(to right, rgba(17, 24, 39, 0.98) 0%, rgba(17, 24, 39, 0.7) 50%, rgba(17, 24, 39, 0.3) 100%);
+  --hero-padding-block-start-mobile: var(--space-8);
+  --hero-padding-block-end-mobile: var(--space-8);
+  --hero-padding-block-start-tablet: var(--space-16);
+  --hero-padding-block-end-tablet: var(--space-12);
+  --hero-padding-block-start-desktop: var(--space-24);
+  --hero-padding-block-end-desktop: var(--space-16);
+  --hero-padding-block-mobile: var(--space-8);
+  --hero-padding-block-tablet: var(--space-16) var(--space-12);
+  --hero-padding-block-desktop: var(--space-24) var(--space-16);
+
   /* --------------------------------------------------------
      TYPOGRAPHY SYSTEM
      -------------------------------------------------------- */
@@ -141,7 +154,7 @@ table {
   --text-base: clamp(1rem, 1vw + 0.1rem, 1.125rem);
   --text-lg: clamp(1.125rem, 1.2vw + 0.1rem, 1.25rem);
   --text-xl: clamp(1.25rem, 1.5vw + 0.1rem, 1.5rem);
-  --text-2xl: clamp(1.5rem, 2vw + 0.1rem, 2rem);
+  --text-2xl: 1.5rem;
   --text-3xl: clamp(1.5rem, 3vw + 0.1rem, 2.5rem);
   --text-4xl: clamp(2.5rem, 4vw + 0.1rem, 3.5rem);
   --text-5xl: clamp(3rem, 5vw + 1rem, 4.5rem);
@@ -262,7 +275,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1, .text-h1 { font-size: var(--text-4xl); }
-h2, .text-h2 { font-size: var(--text-3xl); }
+h2, .text-h2 { font-size: var(--text-h2); }
 h3, .text-h3 { font-size: var(--text-2xl); }
 h4, .text-h4 { font-size: var(--text-xl); }
 h5, .text-h5 { font-size: var(--text-lg); }
