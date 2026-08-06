@@ -34,6 +34,11 @@ html {
   }
 }
 
+/* Ensure anchor links are not hidden under the sticky navbar */
+[id] {
+  scroll-margin-top: var(--header-height, 72px);
+}
+
 body {
   font-family: var(--font-body);
   color: var(--color-text-primary);

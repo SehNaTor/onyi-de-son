@@ -253,15 +253,13 @@ class Navbar {
             const targetId = '#' + hash;
             
             if (window.lenis) {
-              window.lenis.scrollTo(targetId, { offset: -80 });
+              // Lenis might not auto-read scroll-margin-top in all versions, 
+              // but we pass offset to match the CSS scroll-margin-top value.
+              window.lenis.scrollTo(targetId, { offset: -72 });
             } else {
               const target = document.getElementById(hash);
               if (target) {
-                const offsetPosition = target.getBoundingClientRect().top + window.scrollY - 80;
-                window.scrollTo({
-                  top: offsetPosition,
-                  behavior: 'smooth'
-                });
+                target.scrollIntoView({ behavior: 'smooth' });
               }
             }
           }

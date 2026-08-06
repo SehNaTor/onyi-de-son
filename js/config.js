@@ -15,17 +15,17 @@ const CONFIG = {
       {
         id: "tarpaulin",
         label: "Tarpaulin",
-        url: "/products.html#tarpaulin"
+        url: "products.html#tarpaulin"
       },
       {
         id: "carport",
         label: "Carport",
-        url: "/products.html#carport"
+        url: "products.html#carport"
       },
       {
         id: "wallpaper",
         label: "Wallpaper",
-        url: "/products.html#wallpaper"
+        url: "products.html#wallpaper"
       }
     ]
   },
