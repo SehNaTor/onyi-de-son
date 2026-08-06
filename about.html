@@ -20,18 +20,19 @@
 </head>
 <body>
 
-  <!-- Navigation Component Root -->
-  <div data-navbar-root></div>
+  <header class="site-header">
+    <div data-navbar-root></div>
+  </header>
 
   <!-- Main Content -->
-  <main class="main-container pt-nav">
+  <main class="main-container pt-nav" id="main-content">
     
     <!-- Hero Section -->
-    <section class="about-hero section-padding">
+    <section class="page-hero section-padding">
       <div class="container text-center reveal-on-scroll">
         <span class="eyebrow">About Us</span>
-        <h1 class="about-hero__title">Building Trust Through Quality.</h1>
-        <p class="about-hero__desc max-w-md mx-auto">
+        <h1 class="page-hero__title">Building Trust Through Quality.</h1>
+        <p class="page-hero__desc mx-auto">
           For nearly a decade, Onyi De Son of Grace Nig Ltd has been at the forefront of providing premium industrial materials, blending unparalleled durability with exceptional service.
         </p>
       </div>
@@ -52,8 +53,7 @@
             </p>
           </div>
           <div class="about-visual reveal-on-scroll">
-            <!-- Using a representative placeholder aesthetic from Cloudinary -->
-            <img src="https://res.cloudinary.com/vwrjamwn/image/upload/v1784937108/IMG-20260724-WA0049_bdrcky.jpg" alt="Premium Tarpaulin Rolls" class="about-image rounded shadow-lg">
+            <img src="https://res.cloudinary.com/vwrjamwn/image/upload/v1784937108/IMG-20260724-WA0049_bdrcky.jpg" alt="Premium Tarpaulin Rolls" class="about-image">
           </div>
         </div>
       </div>
@@ -68,15 +68,15 @@
           Experience matters. With over 9 years in the industry, we have developed a deep, practical understanding of material performance under diverse environmental conditions.
         </p>
         <div class="experience-stats grid-3">
-          <div class="stat-card">
+          <div class="stat-card reveal-on-scroll">
             <span class="stat-number">9+</span>
             <span class="stat-label">Years of Experience</span>
           </div>
-          <div class="stat-card">
+          <div class="stat-card reveal-on-scroll">
             <span class="stat-number">100%</span>
             <span class="stat-label">Quality Commitment</span>
           </div>
-          <div class="stat-card">
+          <div class="stat-card reveal-on-scroll">
             <span class="stat-number">24/7</span>
             <span class="stat-label">Dedicated Support</span>
           </div>
@@ -95,8 +95,8 @@
           </p>
         </div>
         
-        <div class="partner-grid grid-2 reveal-on-scroll">
-          <article class="partner-card">
+        <div class="partner-grid grid-2">
+          <article class="partner-card reveal-on-scroll">
             <div class="partner-card__icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="12" cy="12" r="10"></circle>
@@ -109,7 +109,7 @@
             <p class="partner-card__desc">A leading South Korean manufacturer renowned for producing high-tensile, weather-resistant PVC and tarpaulin materials.</p>
           </article>
           
-          <article class="partner-card">
+          <article class="partner-card reveal-on-scroll">
             <div class="partner-card__icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                 <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
@@ -123,26 +123,88 @@
       </div>
     </section>
 
+    <!-- Quality & Reliability -->
+    <section class="about-quality section-padding bg-surface">
+      <div class="container">
+        <div class="about-grid align-center">
+          <div class="about-quality__visual reveal-on-scroll">
+            <div class="quality-box">
+              <div class="quality-box__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2" aria-hidden="true">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+              </div>
+              <h3 class="quality-box__title">Guaranteed Durability</h3>
+              <p class="quality-box__desc">All our products come with a guaranteed duration of use, meaning you get materials engineered to outlast standard industry options.</p>
+              <div class="quality-metrics">
+                <div class="quality-metric">
+                  <span class="quality-metric__value">8+</span>
+                  <span class="quality-metric__label">Year Guarantee</span>
+                </div>
+                <div class="quality-metric">
+                  <span class="quality-metric__value">100%</span>
+                  <span class="quality-metric__label">Imported Quality</span>
+                </div>
+                <div class="quality-metric">
+                  <span class="quality-metric__value">3+</span>
+                  <span class="quality-metric__label">Source Countries</span>
+                </div>
+                <div class="quality-metric">
+                  <span class="quality-metric__value">1st</span>
+                  <span class="quality-metric__label">Grade Materials</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="about-content reveal-on-scroll">
+            <span class="eyebrow">Quality Assurance</span>
+            <h2 class="section-title">International Standards, Local Expertise</h2>
+            <p class="section-text">
+              Every product we supply undergoes rigorous quality assessment. From sourcing premium raw materials in South Korea and South Africa to final delivery at your project site, we maintain complete quality control.
+            </p>
+            <p class="section-text">
+              Our direct import relationships eliminate intermediaries, ensuring you receive authentic, factory-certified materials at competitive pricing. We stand behind every roll and every installation.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Values / Commitment -->
-    <section class="about-values section-padding bg-surface">
+    <section class="about-values section-padding">
       <div class="container reveal-on-scroll">
         <div class="text-center mb-3">
           <span class="eyebrow">Our Values</span>
           <h2 class="section-title">What Drives Us Forward</h2>
         </div>
         <div class="values-grid grid-3">
-          <div class="value-item">
-            <div class="value-item__icon">🛡️</div>
+          <div class="value-item reveal-on-scroll">
+            <div class="value-item__icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </div>
             <h3 class="value-item__title">Uncompromising Quality</h3>
             <p class="value-item__desc">Every roll of material and every installed structure meets strict durability standards.</p>
           </div>
-          <div class="value-item">
-            <div class="value-item__icon">🤝</div>
+          <div class="value-item reveal-on-scroll">
+            <div class="value-item__icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
             <h3 class="value-item__title">Client Trust</h3>
             <p class="value-item__desc">We build long-term relationships through transparent pricing and honest consultations.</p>
           </div>
-          <div class="value-item">
-            <div class="value-item__icon">⚡</div>
+          <div class="value-item reveal-on-scroll">
+            <div class="value-item__icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+              </svg>
+            </div>
             <h3 class="value-item__title">Professional Delivery</h3>
             <p class="value-item__desc">Timely execution and precision installations by our experienced technical team.</p>
           </div>
@@ -151,11 +213,11 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="about-cta section-padding reveal-on-scroll">
-      <div class="container text-center">
-        <h2 class="cta-title">Ready to start your project?</h2>
-        <p class="cta-desc">Discover our range of premium materials or speak with our experts today.</p>
-        <div class="cta-actions">
+    <section class="cta-band section-padding text-center">
+      <div class="container reveal-on-scroll">
+        <h2 class="cta-band__title">Ready to start your project?</h2>
+        <p class="cta-band__desc">Discover our range of premium materials or speak with our experts today.</p>
+        <div class="cta-band__actions">
           <a href="products.html" class="btn-primary focus-ring">Explore Products</a>
           <a href="https://wa.me/2349161594257?text=Hello%2C%20I%27m%20interested%20in%20your%20products%20and%20services.%20Please%20share%20more%20details." class="btn-outline focus-ring" target="_blank" rel="noopener noreferrer">Contact Us</a>
         </div>
@@ -164,14 +226,18 @@
     
   </main>
 
-  <!-- Site Footer Root -->
-  <div data-site-footer></div>
+  <footer class="site-footer">
+    <div data-site-footer></div>
+  </footer>
+
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
 
   <!-- Module Script Integration -->
   <script type="module">
     import Navbar from './js/components/navbar.js';
     import { SiteFooter } from './js/components/site-footer.js';
     import { initAboutPage } from './js/pages/about.js';
+    import { initLenis } from './js/components/lenis.js';
     
     document.addEventListener('DOMContentLoaded', () => {
       try {
@@ -184,6 +250,12 @@
         new SiteFooter();
       } catch (err) {
         console.error('SiteFooter Initialization Error:', err);
+      }
+
+      try {
+        initLenis();
+      } catch (err) {
+        console.warn('Lenis Initialization Warning:', err);
       }
 
       try {

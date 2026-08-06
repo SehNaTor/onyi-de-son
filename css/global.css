@@ -16,7 +16,8 @@
 }
 
 html {
-  font-size: 100%; /* Fallback for older browsers */
+  font-size: 100%;
+  /* Fallback for older browsers */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -39,8 +40,10 @@ body {
   background-color: var(--color-background);
   line-height: var(--line-height-base);
   min-height: 100vh;
-  min-height: 100dvh; /* Modern mobile-safe fallback */
-  overflow-x: clip; /* Clips overflow without creating a scroll container (avoids iOS Safari scroll interference) */
+  min-height: 100dvh;
+  /* Modern mobile-safe fallback */
+  overflow-x: clip;
+  /* Clips overflow without creating a scroll container (avoids iOS Safari scroll interference) */
   text-rendering: optimizeSpeed;
 }
 
@@ -80,7 +83,10 @@ a {
 }
 
 /* Inherit fonts for form control elements */
-input, button, textarea, select {
+input,
+button,
+textarea,
+select {
   font: inherit;
 }
 
@@ -101,7 +107,8 @@ table {
   /* Brand Identity */
   --color-primary: #1A1A1A;
   --color-secondary: #333333;
-  --color-accent: #B8860B; /* Premium luxury gold */
+  --color-accent: #B8860B;
+  /* Premium luxury gold */
   --color-accent-hover: #996515;
 
   /* Surfaces & Backgrounds */
@@ -109,21 +116,24 @@ table {
   --color-surface-hover: #F8F9FA;
   --color-background: #FAFAFA;
   --color-card-background: #FFFFFF;
-  
+
   /* Borders & Dividers */
   --color-border: #E5E7EB;
   --color-divider: #F3F4F6;
-  
+
   /* Typography Colors */
   --color-text-primary: #111827;
   --color-text-secondary: #4B5563;
   --color-text-muted: #9CA3AF;
-  
+  /* Aliases used across page-level stylesheets */
+  --color-text: var(--color-text-primary);
+  --color-text-light: var(--color-text-secondary);
+
   /* Status Colors */
   --color-success: #10B981;
   --color-warning: #F59E0B;
   --color-error: #EF4444;
-  
+
   /* Interactions & Overlays */
   --color-focus-ring: rgba(184, 134, 11, 0.4);
   --color-overlay: rgba(17, 24, 39, 0.7);
@@ -141,6 +151,12 @@ table {
   --hero-padding-block-tablet: var(--space-16) var(--space-12);
   --hero-padding-block-desktop: var(--space-24) var(--space-16);
 
+  /* Lighter gradient derivatives of hero palette for product content sections */
+  --product-section-bg-light: linear-gradient(180deg, #f7f8fa 0%, #f0f2f5 100%);
+  --product-section-bg-warm: linear-gradient(180deg, #faf8f5 0%, #f5f0eb 100%);
+  --product-section-bg-cool: linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
+  --product-section-bg-gold: linear-gradient(180deg, rgba(184, 134, 11, 0.05) 0%, var(--color-background) 100%);
+
   /* --------------------------------------------------------
      TYPOGRAPHY SYSTEM
      -------------------------------------------------------- */
@@ -155,6 +171,7 @@ table {
   --text-lg: clamp(1.125rem, 1.2vw + 0.1rem, 1.25rem);
   --text-xl: clamp(1.25rem, 1.5vw + 0.1rem, 1.5rem);
   --text-2xl: 1.5rem;
+  --text-h2: clamp(1.5rem, 3vw + 0.2rem, 2rem);
   --text-3xl: clamp(1.5rem, 3vw + 0.1rem, 2.5rem);
   --text-4xl: clamp(2.5rem, 4vw + 0.1rem, 3.5rem);
   --text-5xl: clamp(3rem, 5vw + 1rem, 4.5rem);
@@ -183,21 +200,36 @@ table {
      SPACING SCALE
      -------------------------------------------------------- */
   /* Fluid and predictable spacing units based on 4px grid */
-  --space-1: 0.25rem;  /* 4px */
-  --space-2: 0.5rem;   /* 8px */
-  --space-3: 0.75rem;  /* 12px */
-  --space-4: 1rem;     /* 16px */
-  --space-5: 1.25rem;  /* 20px */
-  --space-6: 1.5rem;   /* 24px */
-  --space-8: 2rem;     /* 32px */
-  --space-10: 2.5rem;  /* 40px */
-  --space-12: 3rem;    /* 48px */
-  --space-16: 4rem;    /* 64px */
-  --space-24: 6rem;    /* 96px */
-  --space-32: 8rem;    /* 128px */
-  --space-48: 12rem;   /* 192px */
-  --space-64: 16rem;   /* 256px */
-  --space-96: 24rem;   /* 384px */
+  --space-1: 0.25rem;
+  /* 4px */
+  --space-2: 0.5rem;
+  /* 8px */
+  --space-3: 0.75rem;
+  /* 12px */
+  --space-4: 1rem;
+  /* 16px */
+  --space-5: 1.25rem;
+  /* 20px */
+  --space-6: 1.5rem;
+  /* 24px */
+  --space-8: 2rem;
+  /* 32px */
+  --space-10: 2.5rem;
+  /* 40px */
+  --space-12: 3rem;
+  /* 48px */
+  --space-16: 4rem;
+  /* 64px */
+  --space-24: 6rem;
+  /* 96px */
+  --space-32: 8rem;
+  /* 128px */
+  --space-48: 12rem;
+  /* 192px */
+  --space-64: 16rem;
+  /* 256px */
+  --space-96: 24rem;
+  /* 384px */
 
   /* --------------------------------------------------------
      BORDER RADIUS
@@ -239,7 +271,7 @@ table {
   --container-narrow: 800px;
   --container-wide: 1600px;
   --container-padding: clamp(var(--space-4), 5vw, var(--space-16));
-  
+
   --header-height: 72px;
   --header-height-scrolled: 60px;
 
@@ -249,12 +281,12 @@ table {
   --duration-fast: 150ms;
   --duration-base: 300ms;
   --duration-slow: 500ms;
-  
+
   --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
   --ease-in: cubic-bezier(0.4, 0, 1, 1);
   --ease-out: cubic-bezier(0, 0, 0.2, 1);
   --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  
+
   /* Fallback for old variables */
   --transition-fast: var(--duration-fast) var(--ease-standard);
   --transition-base: var(--duration-base) var(--ease-standard);
@@ -265,7 +297,12 @@ table {
 /* ==========================================================
    TYPOGRAPHY SYSTEM
 ========================================================== */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-heading);
   font-weight: var(--font-weight-bold);
   line-height: var(--line-height-tight);
@@ -274,12 +311,35 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: var(--tracking-tight);
 }
 
-h1, .text-h1 { font-size: var(--text-4xl); }
-h2, .text-h2 { font-size: var(--text-h2); }
-h3, .text-h3 { font-size: var(--text-2xl); }
-h4, .text-h4 { font-size: var(--text-xl); }
-h5, .text-h5 { font-size: var(--text-lg); }
-h6, .text-h6 { font-size: var(--text-base); }
+h1,
+.text-h1 {
+  font-size: var(--text-4xl);
+}
+
+h2,
+.text-h2 {
+  font-size: var(--text-h2);
+}
+
+h3,
+.text-h3 {
+  font-size: var(--text-2xl);
+}
+
+h4,
+.text-h4 {
+  font-size: var(--text-xl);
+}
+
+h5,
+.text-h5 {
+  font-size: var(--text-lg);
+}
+
+h6,
+.text-h6 {
+  font-size: var(--text-base);
+}
 
 p {
   margin-bottom: var(--space-4);
@@ -310,11 +370,13 @@ p {
 ========================================================== */
 .main-container {
   width: 100%;
-  max-width: clamp(1440px, 95vw, 1920px); /* Safely boxes ultra-wide displays */
+  max-width: clamp(1440px, 95vw, 1920px);
+  /* Safely boxes ultra-wide displays */
   margin-inline: auto;
   padding-inline: var(--container-padding);
   box-sizing: border-box;
-  overflow: clip; /* Modern alternative to hidden */
+  overflow: clip;
+  /* Modern alternative to hidden */
   display: flex;
   flex-direction: column;
 }
@@ -324,9 +386,14 @@ p {
   Pulls sections out to the container edges to allow backgrounds to bleed,
   while pushing the inner content back in for perfect alignment.
 */
-.main-container > section {
+.main-container>section {
   margin-inline: calc(var(--container-padding) * -1);
   padding-inline: var(--container-padding);
+}
+
+/* Prevent double padding when a container is placed inside a full-bleed section */
+.main-container>section .container {
+  padding-inline: 0;
 }
 
 .container {
@@ -362,7 +429,7 @@ p {
 }
 
 /* Flow: Consistently spaces out direct children vertically */
-.flow > * + * {
+.flow>*+* {
   margin-block-start: var(--flow-space, var(--space-6));
 }
 
@@ -407,12 +474,19 @@ p {
 }
 
 @media (min-width: 768px) {
-  .grid-2-col { grid-template-columns: repeat(2, 1fr); }
-  .grid-3-col { grid-template-columns: repeat(3, 1fr); }
+  .grid-2-col {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid-3-col {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 @media (min-width: 1024px) {
-  .grid-4-col { grid-template-columns: repeat(4, 1fr); }
+  .grid-4-col {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 
@@ -447,7 +521,7 @@ select {
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   transition: border-color var(--duration-fast) var(--ease-standard),
-              box-shadow var(--duration-fast) var(--ease-standard);
+    box-shadow var(--duration-fast) var(--ease-standard);
 }
 
 textarea {
@@ -530,21 +604,49 @@ textarea::placeholder {
 }
 
 /* Text Alignment */
-.text-center { text-align: center; }
-.text-left { text-align: left; }
-.text-right { text-align: right; }
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
 
 /* Display */
-.d-none { display: none; }
-.d-block { display: block; }
-.d-flex { display: flex; }
+.d-none {
+  display: none;
+}
+
+.d-block {
+  display: block;
+}
+
+.d-flex {
+  display: flex;
+}
 
 /* Width/Height Helpers */
-.w-full { width: 100%; }
-.h-full { height: 100%; }
+.w-full {
+  width: 100%;
+}
+
+.h-full {
+  height: 100%;
+}
 
 /* Margin Auto */
-.mx-auto { margin-inline: auto; }
+.mx-auto {
+  margin-inline: auto;
+}
+
+/* Background Surfaces */
+.bg-surface {
+  background-color: var(--color-background);
+}
 
 
 /* ==========================================================
@@ -552,6 +654,7 @@ textarea::placeholder {
 ========================================================== */
 /* Reduced Motion Support */
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
@@ -608,6 +711,7 @@ html.lenis body {
     opacity: 0;
     transform: translateY(24px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -619,6 +723,7 @@ html.lenis body {
     opacity: 0;
     transform: translateX(-24px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -630,6 +735,7 @@ html.lenis body {
     opacity: 0;
     transform: scale(0.92);
   }
+
   to {
     opacity: 1;
     transform: scale(1);
@@ -641,6 +747,7 @@ html.lenis body {
     transform: scale(1);
     opacity: 0.4;
   }
+
   100% {
     transform: scale(1.6);
     opacity: 0;
@@ -652,7 +759,7 @@ html.lenis body {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.6s var(--ease-out),
-              transform 0.6s var(--ease-out);
+    transform 0.6s var(--ease-out);
 }
 
 .stagger-reveal.is-visible {
@@ -660,9 +767,228 @@ html.lenis body {
   transform: translateY(0);
 }
 
-.stagger-reveal:nth-child(1) { transition-delay: 0s; }
-.stagger-reveal:nth-child(2) { transition-delay: 0.1s; }
-.stagger-reveal:nth-child(3) { transition-delay: 0.2s; }
-.stagger-reveal:nth-child(4) { transition-delay: 0.3s; }
-.stagger-reveal:nth-child(5) { transition-delay: 0.4s; }
+.stagger-reveal:nth-child(1) {
+  transition-delay: 0s;
+}
 
+.stagger-reveal:nth-child(2) {
+  transition-delay: 0.1s;
+}
+
+.stagger-reveal:nth-child(3) {
+  transition-delay: 0.2s;
+}
+
+.stagger-reveal:nth-child(4) {
+  transition-delay: 0.3s;
+}
+
+.stagger-reveal:nth-child(5) {
+  transition-delay: 0.4s;
+}
+
+
+/* ==========================================================
+   SHARED PAGE COMPONENTS
+   Reusable across Gallery, Projects, About, Services, etc.
+========================================================== */
+
+/* ----------------------------------------------------------
+   Page Hero — Light gradient hero for inner pages
+   ---------------------------------------------------------- */
+.page-hero {
+  background: linear-gradient(180deg, var(--color-surface) 0%, var(--color-background) 100%);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.page-hero__title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 5vw + 0.5rem, 4rem);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-4);
+  letter-spacing: var(--tracking-tight);
+}
+
+.page-hero__desc {
+  font-size: var(--text-lg);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-base);
+  max-width: 42rem;
+}
+
+.page-hero__desc.mx-auto {
+  margin-inline: auto;
+}
+
+/* ----------------------------------------------------------
+   Section Text — Shared body text for content sections
+   ---------------------------------------------------------- */
+.section-text {
+  font-size: var(--text-lg);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-loose);
+  margin-bottom: var(--space-4);
+}
+
+/* Spacing utility */
+.mb-3 {
+  margin-bottom: var(--space-12);
+}
+
+/* ----------------------------------------------------------
+   CTA Band — Shared dark CTA section
+   Used by Products, Projects, Services, About
+   ---------------------------------------------------------- */
+.cta-band {
+  background-color: var(--color-primary);
+  color: var(--color-surface);
+}
+
+.cta-band__title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-4);
+  color: var(--color-surface);
+  letter-spacing: var(--tracking-tight);
+}
+
+.cta-band__desc {
+  font-size: var(--text-xl);
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 600px;
+  margin: 0 auto var(--space-10) auto;
+  line-height: var(--line-height-base);
+}
+
+.cta-band__actions {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-6);
+  flex-wrap: wrap;
+}
+
+.cta-band .btn-primary {
+  background-color: var(--color-surface);
+  color: var(--color-primary);
+}
+
+.cta-band .btn-primary:hover {
+  background-color: var(--color-surface-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.cta-band .btn-outline {
+  border-color: rgba(255, 255, 255, 0.5);
+  color: var(--color-surface);
+}
+
+.cta-band .btn-outline:hover {
+  border-color: var(--color-surface);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ----------------------------------------------------------
+   Outline Button — Secondary action variant
+   ---------------------------------------------------------- */
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-3) var(--space-6);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  background: transparent;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  transition: background-color var(--duration-base) var(--ease-standard),
+    border-color var(--duration-base) var(--ease-standard),
+    color var(--duration-base) var(--ease-standard),
+    transform var(--duration-fast) var(--ease-standard);
+  text-decoration: none;
+}
+
+.btn-outline:hover {
+  border-color: var(--color-primary);
+  background-color: var(--color-surface-hover);
+  transform: translateY(-1px);
+}
+
+/* ----------------------------------------------------------
+   Loading Spinner — Shared across Gallery, Projects
+   ---------------------------------------------------------- */
+.spinner {
+  width: 44px;
+  height: 44px;
+  border: 3px solid var(--color-border);
+  border-radius: var(--radius-circle);
+  border-top-color: var(--color-primary);
+  animation: spin 1s ease-in-out infinite;
+  margin: 0 auto var(--space-4) auto;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ----------------------------------------------------------
+   Scroll Reveal — Single source of truth
+   Used with IntersectionObserver .is-visible trigger
+   ---------------------------------------------------------- */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s var(--ease-out),
+    transform 0.7s var(--ease-out);
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Eyebrow label — shared overline component */
+.eyebrow {
+  display: block;
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-widest);
+  color: var(--color-accent);
+  margin-bottom: var(--space-2);
+}
+
+/* Section title — shared heading component */
+.section-title {
+  font-family: var(--font-heading);
+  font-size: var(--text-h2);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-snug);
+  letter-spacing: var(--tracking-tight);
+  margin-bottom: var(--space-4);
+  color: var(--color-text-primary);
+}
+
+/* Section description */
+.section-desc {
+  font-size: var(--text-lg);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-base);
+  margin-bottom: var(--space-8);
+}
+
+/* Max-width utility */
+.max-w-md {
+  max-width: 48rem;
+}
+
+/* Nav top padding */
+.pt-nav {
+  padding-top: var(--nav-height, 80px);
+}

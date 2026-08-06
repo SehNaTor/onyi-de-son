@@ -18,18 +18,19 @@
 </head>
 <body>
 
-  <!-- Navigation Component Root -->
-  <div data-navbar-root></div>
+  <header class="site-header">
+    <div data-navbar-root></div>
+  </header>
 
   <!-- Main Content -->
-  <main class="main-container pt-nav">
+  <main class="main-container pt-nav" id="main-content">
     
     <!-- Services Hero Section -->
-    <section class="services-hero section-padding">
+    <section class="page-hero section-padding">
       <div class="container text-center reveal-on-scroll">
         <span class="eyebrow">Professional Services</span>
-        <h1 class="services-hero__title">Expertise You Can Trust.</h1>
-        <p class="services-hero__desc max-w-md mx-auto">
+        <h1 class="page-hero__title">Expertise You Can Trust.</h1>
+        <p class="page-hero__desc mx-auto">
           We provide comprehensive, high-quality solutions across a wide range of industries. From agricultural setups to heavy-duty industrial installations, our services are executed with precision, durability, and a commitment to excellence.
         </p>
       </div>
@@ -221,32 +222,35 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="cta-section section-padding" style="background-color: var(--color-primary); color: #fff;">
-      <div class="container text-center reveal-on-scroll">
-        <h2 style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; margin-bottom: 1rem; color: #fff;">Need a specialized service?</h2>
-        <p style="font-size: 1.25rem; color: rgba(255,255,255,0.9); max-width: 600px; margin: 0 auto 2.5rem auto; line-height: 1.6;">
+    <section class="cta-band section-padding text-center">
+      <div class="container reveal-on-scroll">
+        <h2 class="cta-band__title">Need a specialized service?</h2>
+        <p class="cta-band__desc">
           Contact our team today to discuss your project requirements and receive a customized quote.
         </p>
-        <div style="display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
-          <a href="contact.html" class="btn-primary focus-ring" style="background-color: #fff; color: var(--color-primary);">Get a Quote</a>
-          <a href="tel:+2349161594257" class="btn-secondary focus-ring" style="border-color: rgba(255,255,255,0.5); color: #fff;">Call Us Now</a>
+        <div class="cta-band__actions">
+          <a href="contact.html" class="btn-primary focus-ring">Get a Quote</a>
+          <a href="tel:+2349161594257" class="btn-outline focus-ring">Call Us Now</a>
         </div>
       </div>
     </section>
     
   </main>
 
-  <!-- Site Footer Root -->
-  <div data-site-footer></div>
+  <footer class="site-footer">
+    <div data-site-footer></div>
+  </footer>
+
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
 
   <!-- Module Script Integration -->
   <script type="module">
     import Navbar from './js/components/navbar.js';
     import { SiteFooter } from './js/components/site-footer.js';
     import { initServicesPage } from './js/pages/services.js';
+    import { initLenis } from './js/components/lenis.js';
     
     document.addEventListener('DOMContentLoaded', () => {
-      // Initialize core components with error boundaries
       try {
         new Navbar();
       } catch (err) {
@@ -257,6 +261,12 @@
         new SiteFooter();
       } catch (err) {
         console.error('SiteFooter Initialization Error:', err);
+      }
+
+      try {
+        initLenis();
+      } catch (err) {
+        console.warn('Lenis Initialization Warning:', err);
       }
 
       // Initialize page specific logic

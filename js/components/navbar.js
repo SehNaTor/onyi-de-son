@@ -230,6 +230,44 @@ class Navbar {
     if (this.mobileDropdownInner) {
       this.mobileDropdownInner.innerHTML = createLinks(true);
     }
+
+    // Attach click events to the newly generated dropdown links
+    const allDropdownLinks = this.root.querySelectorAll('.nav__dropdown-link, .nav__mobile-dropdown-link');
+    allDropdownLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href');
+        
+        // Close mobile menu if open
+        if (this.mobileMenu && this.mobileMenu.classList.contains('is-active')) {
+          this.closeMobileMenu();
+        }
+
+        if (href && href.includes('#')) {
+          const [path, hash] = href.split('#');
+          const currentPath = window.location.pathname;
+          
+          // If the link points to a section on the current page, scroll smoothly
+          if (!path || currentPath.endsWith(path) || (currentPath === '/' && path === '/index.html') || currentPath.endsWith('/' + path)) {
+            e.preventDefault();
+            
+            const targetId = '#' + hash;
+            
+            if (window.lenis) {
+              window.lenis.scrollTo(targetId, { offset: -80 });
+            } else {
+              const target = document.getElementById(hash);
+              if (target) {
+                const offsetPosition = target.getBoundingClientRect().top + window.scrollY - 80;
+                window.scrollTo({
+                  top: offsetPosition,
+                  behavior: 'smooth'
+                });
+              }
+            }
+          }
+        }
+      });
+    });
   }
 
   /**
