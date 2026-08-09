@@ -253,7 +253,7 @@ class Navbar {
           const currentPath = window.location.pathname;
           
           // If the link points to a section on the current page, scroll smoothly
-          if (!path || currentPath.endsWith(path) || (currentPath === '/' && path === '/index.html') || currentPath.endsWith('/' + path)) {
+          if (!path || currentPath.endsWith(path) || (currentPath.endsWith('/') && path === 'index.html') || currentPath.endsWith('/' + path)) {
             e.preventDefault();
             
             const targetId = '#' + hash;
@@ -348,10 +348,10 @@ class Navbar {
    * Dynamically detect the active page and set aria-current
    */
   checkActivePage() {
-    // Get current path, defaulting to index.html if empty or root
+    // Get current path, defaulting to index.html if pointing to a directory root
     let currentPath = window.location.pathname;
-    if (currentPath === '/' || currentPath === '') {
-      currentPath = '/index.html';
+    if (currentPath.endsWith('/')) {
+      currentPath += 'index.html';
     }
 
     // Function to check and set active links in a given container

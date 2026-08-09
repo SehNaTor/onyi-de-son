@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Check if already authenticated, if so, redirect immediately
   const { session } = await AuthService.getSession();
   if (session) {
-    window.location.href = '/admin.html';
+    window.location.href = 'admin.html';
     return;
   }
 
@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       
       // Artificial delay for smooth UX transition
       setTimeout(() => {
-        window.location.href = '/admin.html';
+        window.location.href = 'admin.html';
       }, 1000);
 
     } catch (err) {

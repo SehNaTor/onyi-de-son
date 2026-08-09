@@ -171,6 +171,12 @@
   transform: translateY(0);
 }
 
+@media (min-width: 640px) and (max-width: 1023px) {
+  .contact-details {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 640px) {
   .contact-card {
     padding: var(--space-6);
@@ -178,5 +184,20 @@
 
   .contact-form__submit {
     width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-card {
+    padding: var(--space-4);
+    border-radius: var(--radius-xl);
+  }
+  
+  .contact-detail {
+    padding: var(--space-3);
+  }
+  
+  .contact-hero__title {
+    font-size: clamp(1.75rem, 8vw, 2rem);
   }
 }

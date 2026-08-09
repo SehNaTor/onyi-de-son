@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // --- Authentication Guard ---
   const { session, error } = await AuthService.getSession();
   if (!session || error) {
-    window.location.replace('/login.html');
+    window.location.replace('login.html');
     return; // Stop execution
   }
 
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     btnLogout.addEventListener('click', async (e) => {
       e.preventDefault();
       await AuthService.logout();
-      window.location.replace('/login.html');
+      window.location.replace('login.html');
     });
   }
 
