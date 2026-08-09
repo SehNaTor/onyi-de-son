@@ -1,5 +1,4 @@
 import { fetchActiveProjects } from '../services/projectService.js';
-import { supabase } from '../supabase.js';
 
 /**
  * Initializes the projects page logic.
@@ -29,6 +28,9 @@ export async function initProjectsPage() {
       projectsGrid.style.display = 'grid';
     }
   }
+
+  // Set initial loading state before fetch begins
+  updateState('loading');
 
   // Fetch data
   const projects = await fetchActiveProjects();

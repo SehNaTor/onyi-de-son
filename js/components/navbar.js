@@ -33,7 +33,7 @@ class Navbar {
         <div class="container nav">
           
           <!-- Brand Logo -->
-          <a href="index.html" class="nav__brand focus-ring" aria-label="Onyi De Son of Grace Nig Ltd - Home">
+          <a href="index.html" class="nav__brand focus-ring" aria-label="Onyii De Son of Grace Nig Ltd - Home">
             <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <rect width="32" height="32" rx="8" fill="var(--color-primary)"/>
               <path d="M16 8L24 22H8L16 8Z" fill="var(--color-accent)"/>
@@ -69,7 +69,7 @@ class Navbar {
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
               Call Us Now
             </a>
-            <a href="https://wa.me/2349161594257?text=Hello%2C%20I%27m%20interested%20in%20your%20products%20and%20services.%20Please%20share%20more%20details." class="btn-primary focus-ring" target="_blank" rel="noopener noreferrer">Contact Us</a>
+            <a href="contact.html" class="btn-primary focus-ring">Contact Us</a>
           </div>
 
           <!-- Mobile Menu Toggle Button -->
@@ -106,8 +106,10 @@ class Navbar {
           <li><a href="index.html" class="nav__mobile-link focus-ring">Home</a></li>
           <li>
             <a href="products.html" class="nav__mobile-link focus-ring" aria-expanded="false" aria-controls="mobile-products-dropdown" data-navbar="mobile-dropdown-toggle">
-              Products
-              <svg class="nav__chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              <span>Products</span>
+              <span class="nav__chevron-wrapper" style="padding: 0.5rem; margin: -0.5rem; display: flex; align-items: center; justify-content: center;">
+                <svg class="nav__chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </span>
             </a>
             <div class="nav__mobile-dropdown" id="mobile-products-dropdown" data-navbar="mobile-dropdown">
               <ul class="nav__mobile-dropdown-inner" data-navbar="mobile-dropdown-inner">
@@ -126,7 +128,7 @@ class Navbar {
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
             Call Us Now
           </a>
-          <a href="https://wa.me/2349161594257?text=Hello%2C%20I%27m%20interested%20in%20your%20products%20and%20services.%20Please%20share%20more%20details." class="btn-primary focus-ring" target="_blank" rel="noopener noreferrer">Contact Us</a>
+          <a href="contact.html" class="btn-primary focus-ring">Contact Us</a>
         </div>
       </nav>
     `;
@@ -199,8 +201,12 @@ class Navbar {
     // Mobile Dropdown Toggle
     if (this.mobileDropdownToggle) {
       this.mobileDropdownToggle.addEventListener('click', (e) => {
-        e.preventDefault();
-        this.toggleMobileDropdown();
+        // Toggle the dropdown if they click on the chevron wrapper
+        if (e.target.closest('.nav__chevron-wrapper')) {
+          e.preventDefault();
+          this.toggleMobileDropdown();
+        }
+        // Otherwise, the link will naturally navigate to products.html
       });
     }
   }

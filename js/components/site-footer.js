@@ -25,7 +25,7 @@ export class SiteFooter {
 
             <!-- Card 1: Company Overview -->
             <div class="site-footer__card site-footer__card--brand">
-              <a href="index.html" class="site-footer__brand-name focus-ring" aria-label="Onyi De Son of Grace Nig Ltd - Home">
+              <a href="index.html" class="site-footer__brand-name focus-ring" aria-label="Onyii De Son of Grace Nig Ltd - Home">
                 <svg class="site-footer__brand-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                   <rect width="32" height="32" rx="8" fill="var(--color-surface)"/>
                   <path d="M16 8L24 22H8L16 8Z" fill="var(--color-accent)"/>

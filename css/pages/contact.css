@@ -160,24 +160,6 @@
   min-width: 180px;
 }
 
-.contact-status {
-  min-height: 1.25rem;
-  font-size: var(--text-sm);
-  font-weight: 600;
-}
-
-.contact-status.is-success {
-  color: var(--color-success);
-}
-
-.contact-status.is-error {
-  color: var(--color-error);
-}
-
-.contact-status.is-loading {
-  color: var(--color-accent);
-}
-
 .reveal-on-scroll {
   opacity: 0;
   transform: translateY(28px);

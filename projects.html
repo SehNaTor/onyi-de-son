@@ -28,9 +28,9 @@
     <!-- Projects Hero Section -->
     <section class="page-hero section-padding">
       <div class="container text-center reveal-on-scroll">
-        <span class="eyebrow">Our Portfolio</span>
-        <h1 class="page-hero__title">Proven Excellence in Execution.</h1>
-        <p class="page-hero__desc mx-auto">
+        <span class="eyebrow">Our Project</span>
+        <h1 class="page-hero__title" style="font-size: 28px;">Proven Excellence in Execution.</h1>
+        <p class="page-hero__desc mx-auto" style="font-size: 16px;">
           Explore our extensive portfolio of completed projects. From heavy-duty industrial coverings to premium commercial carports, our work stands as a testament to our commitment to quality, durability, and professional execution.
         </p>
       </div>
@@ -122,11 +122,9 @@
       }
       
       // Initialize page specific logic
-      try {
-        initProjectsPage();
-      } catch (err) {
+      initProjectsPage().catch(err => {
         console.error('Projects Page JS Error:', err);
-      }
+      });
 
       // Scroll Reveal Animation
       const revealElements = document.querySelectorAll('.reveal-on-scroll');

@@ -1,5 +1,6 @@
 import { API } from './api.js';
 import { UI } from './ui.js';
+import { ImageUploader } from '../components/ImageUploader.js';
 
 let currentItems = [];
 let currentEditId = null;
@@ -112,13 +113,9 @@ export const ProjectsController = {
           <textarea id="description" class="form-control" placeholder="Brief description of the project...">${item?.description || ''}</textarea>
         </div>
 
-        <div class="image-preview" id="form-image-preview">
-          ${item?.image_url ? `<img src="${item.image_url}" alt="Preview" onerror="this.style.display='none'">` : '<span>Cover Image Preview</span>'}
-        </div>
-        
         <div class="form-group">
-          <label class="form-label" for="image_url">Cover Image URL</label>
-          <input type="url" id="image_url" class="form-control" value="${item?.image_url || ''}" placeholder="https://...">
+          <label class="form-label">Cover Image</label>
+          <div id="project-image-uploader"></div>
         </div>
         
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
@@ -150,17 +147,11 @@ export const ProjectsController = {
       </form>
     `;
 
-    // Handle preview update
-    const urlInput = document.getElementById('image_url');
-    const previewContainer = document.getElementById('form-image-preview');
-    
-    urlInput.addEventListener('input', (e) => {
-      const val = e.target.value;
-      if (val) {
-        previewContainer.innerHTML = `<img src="${val}" alt="Preview" onerror="this.style.display='none'; this.parentElement.innerHTML='<span>Invalid Image URL</span>'">`;
-      } else {
-        previewContainer.innerHTML = `<span>Cover Image Preview</span>`;
-      }
+    // Initialize Image Uploader
+    const imageUploader = new ImageUploader('project-image-uploader', {
+      defaultImage: item?.image_url || null,
+      maxSizeMB: 5,
+      acceptedTypes: ['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml']
     });
 
     // Handle submit
@@ -170,21 +161,24 @@ export const ProjectsController = {
       saveBtn.disabled = true;
       saveBtn.textContent = 'Saving...';
       
-      const payload = {
-        title: document.getElementById('title').value.trim(),
-        category: document.getElementById('category').value.trim(),
-        description: document.getElementById('description').value.trim(),
-        image_url: document.getElementById('image_url').value.trim(),
-        status: document.getElementById('status').value,
-        display_order: parseInt(document.getElementById('display_order').value) || 0,
-        featured: document.getElementById('featured').checked
-      };
+      try {
+        // Upload image first if needed
+        const uploadedUrl = await imageUploader.upload();
+
+        const payload = {
+          title: document.getElementById('title').value.trim(),
+          category: document.getElementById('category').value.trim(),
+          description: document.getElementById('description').value.trim(),
+          image_url: uploadedUrl || '',
+          status: document.getElementById('status').value,
+          display_order: parseInt(document.getElementById('display_order').value) || 0,
+          featured: document.getElementById('featured').checked
+        };
       
       if (currentEditId) payload.id = currentEditId;
       
-      try {
-        const { error } = await API.saveProject(payload);
-        if (error) throw error;
+      const { error } = await API.saveProject(payload);
+      if (error) throw error;
         
         UI.showToast('Project saved successfully!');
         UI.closeModal('admin-modal');

@@ -172,7 +172,7 @@ table {
   /* Fluid Font Sizes (Mobile to Desktop) */
   --text-xs: clamp(0.75rem, 0.7vw + 0.1rem, 0.875rem);
   --text-sm: clamp(0.875rem, 0.8vw + 0.1rem, 1rem);
-  --text-base: clamp(1rem, 1vw + 0.1rem, 1.125rem);
+  /* --text-base: clamp(1rem, 1vw + 0.1rem, 1.125rem); */
   --text-lg: clamp(1.125rem, 1.2vw + 0.1rem, 1.25rem);
   --text-xl: clamp(1.25rem, 1.5vw + 0.1rem, 1.5rem);
   --text-2xl: 1.5rem;
@@ -316,10 +316,6 @@ h6 {
   letter-spacing: var(--tracking-tight);
 }
 
-h1,
-.text-h1 {
-  font-size: var(--text-4xl);
-}
 
 h2,
 .text-h2 {
@@ -799,6 +795,44 @@ html.lenis body {
 ========================================================== */
 
 /* ----------------------------------------------------------
+   UI State — Loading / Empty / Error feedback containers
+   Hidden by default; shown via .is-active toggle
+   ---------------------------------------------------------- */
+.ui-state {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-16) var(--space-4);
+  gap: var(--space-2);
+}
+
+.ui-state.is-active {
+  display: flex;
+}
+
+.ui-state__icon {
+  margin-bottom: var(--space-4);
+  color: var(--color-text-muted);
+}
+
+.ui-state__title {
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.ui-state__desc {
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+  max-width: 28rem;
+  line-height: var(--line-height-base);
+}
+
+/* ----------------------------------------------------------
    Page Hero — Light gradient hero for inner pages
    ---------------------------------------------------------- */
 .page-hero {
@@ -996,4 +1030,68 @@ html.lenis body {
 /* Nav top padding */
 .pt-nav {
   padding-top: var(--nav-height, 80px);
+}
+
+/* ==========================================================
+   REUSABLE NOTIFICATION SYSTEM (TOAST)
+========================================================== */
+.toast-notification {
+  position: fixed;
+  bottom: var(--space-6);
+  right: var(--space-6);
+  z-index: var(--z-toast, 1500);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-6);
+  background-color: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(24px) scale(0.95);
+  transition: opacity var(--duration-base) var(--ease-spring),
+              transform var(--duration-base) var(--ease-spring);
+  border-left: 4px solid transparent;
+}
+
+.toast-notification.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.toast-notification.is-success {
+  border-left-color: var(--color-success);
+}
+
+.toast-notification.is-error {
+  border-left-color: var(--color-error);
+}
+
+.toast-notification__icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+
+.toast-notification.is-success .toast-notification__icon {
+  color: var(--color-success);
+}
+
+.toast-notification.is-error .toast-notification__icon {
+  color: var(--color-error);
+}
+
+@media (max-width: 640px) {
+  .toast-notification {
+    left: var(--space-4);
+    right: var(--space-4);
+    bottom: var(--space-4);
+    width: auto;
+  }
 }

@@ -1,5 +1,6 @@
 import { API } from './api.js';
 import { UI } from './ui.js';
+import { ImageUploader } from '../components/ImageUploader.js';
 
 let currentItems = [];
 let currentEditId = null;
@@ -85,13 +86,9 @@ export const GalleryController = {
     const modalBody = document.getElementById('modal-body');
     modalBody.innerHTML = `
       <form id="gallery-form">
-        <div class="image-preview" id="form-image-preview">
-          ${item?.image_url ? `<img src="${item.image_url}" alt="Preview" onerror="this.style.display='none'">` : '<span>Image Preview</span>'}
-        </div>
-        
         <div class="form-group">
-          <label class="form-label" for="image_url">Image URL *</label>
-          <input type="url" id="image_url" class="form-control" required value="${item?.image_url || ''}" placeholder="https://...">
+          <label class="form-label">Gallery Image *</label>
+          <div id="gallery-image-uploader"></div>
         </div>
         
         <div class="form-group">
@@ -111,17 +108,11 @@ export const GalleryController = {
       </form>
     `;
 
-    // Handle preview update
-    const urlInput = document.getElementById('image_url');
-    const previewContainer = document.getElementById('form-image-preview');
-    
-    urlInput.addEventListener('input', (e) => {
-      const val = e.target.value;
-      if (val) {
-        previewContainer.innerHTML = `<img src="${val}" alt="Preview" onerror="this.style.display='none'; this.parentElement.innerHTML='<span>Invalid Image URL</span>'">`;
-      } else {
-        previewContainer.innerHTML = `<span>Image Preview</span>`;
-      }
+    // Initialize Image Uploader
+    const imageUploader = new ImageUploader('gallery-image-uploader', {
+      defaultImage: item?.image_url || null,
+      maxSizeMB: 5,
+      acceptedTypes: ['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml']
     });
 
     // Handle submit
@@ -131,15 +122,21 @@ export const GalleryController = {
       saveBtn.disabled = true;
       saveBtn.textContent = 'Saving...';
       
-      const payload = {
-        image_url: document.getElementById('image_url').value.trim(),
-        caption: document.getElementById('caption').value.trim(),
-        display_order: parseInt(document.getElementById('display_order').value) || 0
-      };
-      
-      if (currentEditId) payload.id = currentEditId;
-      
       try {
+        const uploadedUrl = await imageUploader.upload();
+        
+        if (!uploadedUrl) {
+          throw new Error('An image is required for the gallery.');
+        }
+
+        const payload = {
+          image_url: uploadedUrl,
+          caption: document.getElementById('caption').value.trim(),
+          display_order: parseInt(document.getElementById('display_order').value) || 0
+        };
+        
+        if (currentEditId) payload.id = currentEditId;
+        
         const { error } = await API.saveGalleryItem(payload);
         if (error) throw error;
         

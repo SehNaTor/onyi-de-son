@@ -39,6 +39,10 @@ const CONFIG = {
       { label: "About", url: "/about.html" },
       { label: "Contact", url: "/contact.html" }
     ]
+  },
+  cloudinary: {
+    cloudName: " vwrjamwn", // TODO: Replace with your Cloudinary Cloud Name
+    uploadPreset: "porfolio _upload" // TODO: Replace with your Unsigned Upload Preset
   }
 };
 

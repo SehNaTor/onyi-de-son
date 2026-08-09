@@ -532,3 +532,139 @@ textarea.form-control {
   .admin-header { padding: 0 1rem; }
   .admin-content { padding: 1rem; }
 }
+
+/* Image Uploader Component */
+.image-uploader {
+  position: relative;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.uploader-drop-area {
+  width: 100%;
+  min-height: 160px;
+  border: 2px dashed var(--admin-border);
+  border-radius: 8px;
+  background-color: var(--admin-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.2s ease;
+  overflow: hidden;
+}
+
+.uploader-drop-area.highlight {
+  border-color: var(--admin-primary);
+  background-color: rgba(37, 99, 235, 0.05);
+}
+
+.image-uploader.is-invalid .uploader-drop-area {
+  border-color: var(--admin-danger);
+  background-color: rgba(239, 68, 68, 0.05);
+}
+
+.uploader-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 2rem;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+
+.uploader-icon {
+  width: 32px;
+  height: 32px;
+  color: var(--admin-text-muted);
+}
+
+.uploader-text {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--admin-text);
+}
+
+.uploader-hint {
+  font-size: 0.75rem;
+  color: var(--admin-text-muted);
+}
+
+.uploader-preview-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--admin-surface);
+}
+
+.uploader-preview-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.uploader-actions {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: flex;
+  gap: 0.25rem;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 0.25rem;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.uploader-drop-area:hover .uploader-actions {
+  opacity: 1;
+}
+
+.uploader-actions .btn-icon {
+  background-color: var(--admin-surface);
+  border: 1px solid var(--admin-border);
+}
+
+.uploader-actions .btn-icon:hover {
+  background-color: var(--admin-bg);
+}
+
+.uploader-loading {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--admin-primary);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(2px);
+}
+
+.image-uploader.is-uploading .uploader-loading {
+  opacity: 1;
+  visibility: visible;
+}
+
+.image-uploader.has-image .uploader-placeholder {
+  display: none;
+}
+
+.uploader-error-text {
+  display: none;
+  color: var(--admin-danger);
+  font-size: 0.75rem;
+  margin-top: 0.5rem;
+  font-weight: 500;
+}
