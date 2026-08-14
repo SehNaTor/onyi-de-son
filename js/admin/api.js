@@ -18,7 +18,11 @@ export const API = {
   },
 
   async deleteGalleryItem(id) {
-    return await supabase.from('gallery').delete().eq('id', id);
+    const response = await supabase.from('gallery').delete().eq('id', id).select();
+    if (!response.error && response.data && response.data.length === 0) {
+      return { error: new Error('Permission denied or item not found. 0 rows deleted.') };
+    }
+    return response;
   },
 
   // --- Projects ---
@@ -38,6 +42,10 @@ export const API = {
   },
 
   async deleteProject(id) {
-    return await supabase.from('projects').delete().eq('id', id);
+    const response = await supabase.from('projects').delete().eq('id', id).select();
+    if (!response.error && response.data && response.data.length === 0) {
+      return { error: new Error('Permission denied or item not found. 0 rows deleted.') };
+    }
+    return response;
   }
 };
