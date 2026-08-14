@@ -185,8 +185,8 @@ export class ImageUploader {
     const cloudName = CONFIG.cloudinary?.cloudName;
     const uploadPreset = CONFIG.cloudinary?.uploadPreset;
 
-    if (!cloudName || !uploadPreset || cloudName.includes('YOUR_CLOUD_NAME')) {
-      const errorMsg = 'Cloudinary configuration is missing. Please update config.js.';
+    if (!cloudName || !uploadPreset) {
+      const errorMsg = 'Missing Cloudinary Config: Please add your Cloud Name in js/config.js';
       this.showError(errorMsg);
       this.options.onError(new Error(errorMsg));
       throw new Error(errorMsg);
@@ -206,7 +206,16 @@ export class ImageUploader {
 
       if (!response.ok) {
         const errData = await response.json();
-        throw new Error(errData.error?.message || 'Failed to upload image');
+        let errMsg = errData.error?.message || 'Failed to upload image';
+        
+        // Professional Error Handling: Translate cryptic Cloudinary errors into actionable fixes
+        if (response.status === 401 && errMsg.includes('Unknown API key')) {
+          errMsg = 'Cloudinary Error: Your upload preset ("' + uploadPreset + '") must be set to "Unsigned" in your Cloudinary Dashboard, or your Cloud Name is incorrect.';
+        } else if (response.status === 400 && errMsg.includes('upload preset')) {
+          errMsg = 'Cloudinary Error: Upload preset "' + uploadPreset + '" does not exist. Please create it in your Cloudinary settings.';
+        }
+        
+        throw new Error(errMsg);
       }
 
       const data = await response.json();

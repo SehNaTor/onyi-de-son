@@ -41,8 +41,8 @@ const CONFIG = {
     ]
   },
   cloudinary: {
-    cloudName: " vwrjamwn", // TODO: Replace with your Cloudinary Cloud Name
-    uploadPreset: "porfolio _upload" // TODO: Replace with your Unsigned Upload Preset
+    cloudName:"vwrjamwn", // CRITICAL: Enter your actual Cloudinary Cloud Name here
+    uploadPreset:"onyii-de-son" // CRITICAL: Ensure this preset exists and is set to "Unsigned" in Cloudinary
   }
 };
 

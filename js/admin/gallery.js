@@ -145,7 +145,8 @@ export const GalleryController = {
         await this.loadData();
       } catch (err) {
         console.error(err);
-        UI.showToast('Failed to save gallery item.', 'error');
+        // Display the actual error message so the user knows exactly what to fix
+        UI.showToast(err.message || 'Failed to save gallery item.', 'error');
         saveBtn.disabled = false;
         saveBtn.textContent = 'Save Gallery Item';
       }
