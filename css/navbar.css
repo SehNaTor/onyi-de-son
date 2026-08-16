@@ -60,8 +60,68 @@
   transition: color var(--transition-base), transform var(--transition-fast);
 }
 
-.nav__brand:hover {
+.nav__brand-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  white-space: normal;
+  max-width: 140px;
+}
+
+.nav__brand-primary {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
+  line-height: 1.1;
+  transition: color var(--transition-base);
+}
+
+.nav__brand-secondary {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-text-muted);
+  margin-top: 1px;
+  transition: color var(--transition-base);
+}
+
+@media (min-width: 375px) {
+  .nav__brand-text {
+    max-width: 160px;
+  }
+  .nav__brand-primary {
+    font-size: 1.125rem;
+  }
+  .nav__brand-secondary {
+    font-size: 0.7rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .nav__brand-text {
+    max-width: 200px;
+  }
+  .nav__brand-primary {
+    font-size: 1.25rem;
+  }
+  .nav__brand-secondary {
+    font-size: 0.75rem;
+  }
+}
+
+.nav__brand:hover .nav__brand-primary {
   color: var(--color-accent);
+}
+
+.nav__brand:hover .nav__brand-secondary {
+  color: var(--color-text-secondary);
+}
+
+.nav__brand:hover {
   transform: translateY(-1px);
 }
 

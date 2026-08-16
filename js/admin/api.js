@@ -47,5 +47,37 @@ export const API = {
       return { error: new Error('Permission denied or item not found. 0 rows deleted.') };
     }
     return response;
+  },
+
+  // --- Products ---
+  async fetchProducts() {
+    return await supabase
+      .from('products')
+      .select('*')
+      .order('display_order', { ascending: true });
+  },
+
+  async fetchActiveProducts() {
+    return await supabase
+      .from('products')
+      .select('*')
+      .eq('is_active', true)
+      .order('display_order', { ascending: true });
+  },
+
+  async saveProduct(product) {
+    if (product.id) {
+      return await supabase.from('products').update(product).eq('id', product.id);
+    } else {
+      return await supabase.from('products').insert([product]);
+    }
+  },
+
+  async deleteProduct(id) {
+    const response = await supabase.from('products').delete().eq('id', id).select();
+    if (!response.error && response.data && response.data.length === 0) {
+      return { error: new Error('Permission denied or item not found. 0 rows deleted.') };
+    }
+    return response;
   }
 };

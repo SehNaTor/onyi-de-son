@@ -520,15 +520,7 @@
   position: relative;
 }
 
-/* Even lighter overlay for visual progression */
-.wallpaper-showcase::before {
-  content: '';
-  position: absolute;
-  inset: -1rem -9999px 0 -9999px;
-  background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.06) 50%, rgba(255, 255, 255, 0.1) 100%);
-  pointer-events: none;
-  z-index: 0;
-}
+/* Removed lighter overlay to share hero background */
 
 .wallpaper-showcase__title {
   font-family: var(--font-heading);
@@ -642,6 +634,10 @@
   height: 1px;
   background: linear-gradient(90deg, transparent 0%, rgba(184, 134, 11, 0.2) 50%, transparent 100%);
 }
+
+/* ==========================================================================
+   Product Cards Grid
+   ========================================================================== */
 
 .featured-products .section-header {
   margin-bottom: var(--space-12);
@@ -821,7 +817,6 @@
    ========================================================================== */
 
 .use-cases {
-  background: var(--product-section-bg-warm);
   position: relative;
 }
 
@@ -1044,7 +1039,6 @@
    ========================================================================== */
 
 .partnerships {
-  background: var(--product-section-bg-cool);
   position: relative;
 }
 

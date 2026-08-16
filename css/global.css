@@ -275,7 +275,7 @@ table {
   --container-max-width: 1440px;
   --container-narrow: 800px;
   --container-wide: 1600px;
-  --container-padding: clamp(var(--space-4), 5vw, var(--space-16));
+  --container-padding: clamp(var(--space-2), 5vw, var(--space-16));
 
   --header-height: 72px;
   --header-height-scrolled: 60px;
@@ -859,6 +859,37 @@ html.lenis body {
 
 .page-hero__desc.mx-auto {
   margin-inline: auto;
+}
+
+/* Modifier: Dark Theme for Page Hero (Mirrors product page hero overlay) */
+.page-hero--dark {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-primary);
+  border-bottom: none;
+  isolation: isolate;
+}
+
+.page-hero--dark::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--hero-overlay-mobile);
+}
+
+@media (min-width: 768px) {
+  .page-hero--dark::before {
+    background: var(--hero-overlay-desktop);
+  }
+}
+
+.page-hero--dark .page-hero__title {
+  color: var(--color-surface);
+}
+
+.page-hero--dark .page-hero__desc {
+  color: rgba(255, 255, 255, 0.9);
 }
 
 /* ----------------------------------------------------------

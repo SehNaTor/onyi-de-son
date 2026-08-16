@@ -12,7 +12,9 @@
    ========================================================================== */
 
 .projects-section {
-  background-color: var(--color-surface);
+  /* background-color: var(); */
+  background:linear-gradient(135deg, rgba(17, 24, 39, 0.85) 0%, rgba(17, 24, 39, 0.95) 100%), linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.4) 100%);
+  
 }
 
 .projects-grid {
