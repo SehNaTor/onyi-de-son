@@ -11,7 +11,7 @@
    ========================================================================== */
 
 .gallery-section {
-  background-color: var(--color-background);
+  background: var(--main-background);
   min-height: 50vh;
 }
 

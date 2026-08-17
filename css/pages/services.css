@@ -11,7 +11,8 @@
    ========================================================================== */
 
 .services-grid-section {
-  background: linear-gradient(180deg, var(--color-background) 0%, var(--color-surface) 100%);
+  /* background: linear-gradient(180deg, var(--color-background) 0%, var(--color-surface) 100%); */
+   background:linear-gradient(135deg, rgba(15, 23, 39, 0.85) 0%, rgba(18, 27, 46, 0.95) 100%), linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.4) 100%);
 }
 
 .services-wrapper {
@@ -165,7 +166,7 @@
 
 .service-card__desc {
   font-size: var(--text-base);
-  color: var(--color-text-secondary);
+  color: var(--color-text-secondry);
   line-height: var(--line-height-base);
 }
 

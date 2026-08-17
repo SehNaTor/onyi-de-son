@@ -15,9 +15,8 @@
   display: grid;
   gap: var(--space-10);
   grid-template-columns: 1fr;
+  background: var(--main-background);
 }
-
-
 
 @media (min-width: 992px) {
   .about-grid {

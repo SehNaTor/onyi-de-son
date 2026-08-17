@@ -42,11 +42,13 @@ export const initProducts = async () => {
     if (!container) return;
 
     if (items.length === 0) {
-      container.innerHTML = `
-        <div style="grid-column: 1 / -1; text-align: center; padding: 4rem 1rem;">
-          <p style="color: var(--color-text-muted); font-size: 1.125rem;">Check back soon for new ${category} products.</p>
-        </div>
-      `;
+      const sectionId = category.toLowerCase();
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.style.display = 'none';
+      } else {
+        container.style.display = 'none';
+      }
       return;
     }
 
