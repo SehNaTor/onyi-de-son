@@ -145,14 +145,14 @@
 
 .gallery-lightbox__close {
   position: absolute;
-  top: var(--space-6);
-  right: var(--space-6);
+  top: var(--space-4);
+  right: var(--space-4);
   z-index: 2;
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: var(--radius-circle);
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -162,21 +162,37 @@
               transform var(--duration-fast) var(--ease-standard);
 }
 
+@media (min-width: 640px) {
+  .gallery-lightbox__close {
+    top: var(--space-6);
+    right: var(--space-6);
+    width: 48px;
+    height: 48px;
+  }
+}
+
 .gallery-lightbox__close:hover {
   background: rgba(255, 255, 255, 0.2);
   transform: scale(1.05);
 }
 
 .gallery-lightbox__close svg {
-  width: 22px;
-  height: 22px;
+  width: 18px;
+  height: 18px;
+}
+
+@media (min-width: 640px) {
+  .gallery-lightbox__close svg {
+    width: 22px;
+    height: 22px;
+  }
 }
 
 .gallery-lightbox__content {
   position: relative;
   z-index: 1;
-  max-width: 90vw;
-  max-height: 90vh;
+  max-width: 92vw;
+  max-height: 92vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -184,12 +200,18 @@
 
 .gallery-lightbox__image {
   max-width: 100%;
-  max-height: 80vh;
+  max-height: 75vh;
   object-fit: contain;
   border-radius: var(--radius-md);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
   transform: scale(0.95);
   transition: transform var(--duration-base) var(--ease-spring);
+}
+
+@media (min-width: 640px) {
+  .gallery-lightbox__image {
+    max-height: 80vh;
+  }
 }
 
 .gallery-lightbox.is-open .gallery-lightbox__image {
@@ -198,10 +220,17 @@
 
 .gallery-lightbox__caption {
   color: rgba(255, 255, 255, 0.9);
-  margin-top: var(--space-4);
-  font-size: var(--text-base);
+  margin-top: var(--space-3);
+  font-size: var(--text-sm);
   text-align: center;
   max-width: 600px;
+}
+
+@media (min-width: 640px) {
+  .gallery-lightbox__caption {
+    margin-top: var(--space-4);
+    font-size: var(--text-base);
+  }
 }
 
 /* Prevent body scroll when modal is open */

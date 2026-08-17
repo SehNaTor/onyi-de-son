@@ -1,21 +1,85 @@
 /* ==========================================================================
-   About Page Styles
+   About Page Styles — Premium Redesign
    Dependencies: css/global.css (page-hero, eyebrow, section-title, section-text,
                  cta-band, reveal-on-scroll, mb-3, grid-2, grid-3)
-   Purpose: About-specific layouts, stat cards, partner cards, quality box, values.
+   Purpose: Premium corporate about page with editorial polish, frosted glass
+            panels, dark/light alternating sections, and refined micro-interactions.
    All tokens inherited from global.css — zero hardcoded values.
    ========================================================================== */
 
 
 /* ==========================================================================
-   About Grid (Two-Column Content + Visual)
+   Hero — Dark premium hero with --main-background
+   Backward-compatible with home/products/projects hero overlays
    ========================================================================== */
+.page-hero {
+  background: var(--main-background);
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
 
+/* Ambient warm glow — top right */
+.page-hero::after {
+  content: '';
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 500px;
+  height: 500px;
+  border-radius: var(--radius-circle);
+  background: radial-gradient(circle, rgba(184, 134, 11, 0.08) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Override global hero text for dark background — ensure visibility */
+.page-hero .eyebrow {
+  color: var(--color-accent);
+}
+
+.page-hero__title {
+  color: var(--color-surface);
+}
+
+.page-hero__desc {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+
+/* ==========================================================================
+   Who We Are — Light editorial section with image
+   ========================================================================== */
+.about-who-we-are {
+  background: var(--color-surface);
+  position: relative;
+}
+
+/* Subtle warm accent glow */
+.about-who-we-are::before {
+  content: '';
+  position: absolute;
+  bottom: -15%;
+  left: -5%;
+  width: 400px;
+  height: 400px;
+  border-radius: var(--radius-circle);
+  background: radial-gradient(circle, rgba(184, 134, 11, 0.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* About Grid (Two-Column Content + Visual) */
 .about-grid {
   display: grid;
-  gap: var(--space-10);
+  gap: var(--space-6);
   grid-template-columns: 1fr;
-  background: var(--main-background);
+  align-items: center;
+}
+
+@media (min-width: 640px) {
+  .about-grid {
+    gap: var(--space-8);
+  }
 }
 
 @media (min-width: 992px) {
@@ -23,6 +87,24 @@
     grid-template-columns: 1fr 1fr;
     gap: var(--space-16);
   }
+}
+
+/* Content column */
+.about-content {
+  position: relative;
+  z-index: 1;
+}
+
+.about-content .eyebrow {
+  color: var(--color-accent);
+}
+
+.about-content .section-title {
+  color: var(--color-text-primary);
+}
+
+.about-content .section-text {
+  color: var(--color-text-secondary);
 }
 
 /* About Visual / Image */
@@ -36,49 +118,144 @@
   display: block;
   object-fit: cover;
   border-radius: var(--radius-2xl);
-  box-shadow: var(--shadow-xl);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1),
+              0 4px 16px rgba(0, 0, 0, 0.04);
+  transition: transform var(--duration-slow) var(--ease-standard),
+              box-shadow var(--duration-slow) var(--ease-standard);
+}
+
+.about-image:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 28px 72px rgba(0, 0, 0, 0.14),
+              0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+/* Decorative accent frame behind image */
+.about-visual::before {
+  content: '';
+  position: absolute;
+  top: var(--space-4);
+  right: calc(-1 * var(--space-3));
+  bottom: calc(-1 * var(--space-4));
+  left: var(--space-3);
+  border-radius: var(--radius-2xl);
+  border: 2px solid rgba(184, 134, 11, 0.12);
+  z-index: -1;
+  pointer-events: none;
 }
 
 
 /* ==========================================================================
-   Experience Stats
+   Experience Stats — Dark premium section
    ========================================================================== */
+.about-experience {
+  background: linear-gradient(160deg, #0c1120 0%, #141c2e 40%, #1a2440 70%, #0f1726 100%);
+  position: relative;
+  overflow: hidden;
+}
 
+/* Ambient glow */
+.about-experience::before {
+  content: '';
+  position: absolute;
+  top: -30%;
+  right: -10%;
+  width: 600px;
+  height: 600px;
+  border-radius: var(--radius-circle);
+  background: radial-gradient(circle, rgba(184, 134, 11, 0.07) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.about-experience::after {
+  content: '';
+  position: absolute;
+  bottom: -20%;
+  left: -8%;
+  width: 400px;
+  height: 400px;
+  border-radius: var(--radius-circle);
+  background: radial-gradient(circle, rgba(184, 134, 11, 0.04) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+/* Override text colors for dark background */
+.about-experience .eyebrow {
+  color: var(--color-accent);
+}
+
+.about-experience .section-title {
+  color: var(--color-surface);
+}
+
+.about-experience .section-text {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Stats Grid */
 .experience-stats {
-  margin-top: var(--space-10);
+  margin-top: var(--space-12);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+@media (min-width: 640px) {
+  .experience-stats {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .stat-card {
-  background-color: var(--color-background);
-  padding: var(--space-8);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: var(--space-6) var(--space-4);
   border-radius: var(--radius-xl);
-  border: 1px solid var(--color-border);
-  box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-align: center;
+  position: relative;
+  z-index: 1;
   transition: transform var(--duration-base) var(--ease-standard),
-              box-shadow var(--duration-base) var(--ease-standard);
+              box-shadow var(--duration-base) var(--ease-standard),
+              border-color var(--duration-base) var(--ease-standard),
+              background var(--duration-base) var(--ease-standard);
 }
 
-.stat-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-lg);
+@media (min-width: 640px) {
+  .stat-card {
+    padding: var(--space-10) var(--space-6);
+  }
+}
+
+@media (hover: hover) {
+  .stat-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(184, 134, 11, 0.25);
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.04) 100%);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25),
+                0 0 0 1px rgba(184, 134, 11, 0.1);
+  }
 }
 
 .stat-number {
   font-family: var(--font-heading);
-  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
   font-weight: var(--font-weight-bold);
   color: var(--color-accent);
   line-height: var(--line-height-tight);
   margin-bottom: var(--space-2);
+  letter-spacing: var(--tracking-tight);
+  filter: drop-shadow(0 0 8px rgba(184, 134, 11, 0.2));
 }
 
 .stat-label {
   font-weight: var(--font-weight-semibold);
-  color: var(--color-text-secondary);
+  color: rgba(255, 255, 255, 0.55);
   text-transform: uppercase;
   letter-spacing: var(--tracking-wide);
   font-size: var(--text-xs);
@@ -86,31 +263,129 @@
 
 
 /* ==========================================================================
-   Partner Cards
+   Partners / Collaborations — Light warm section
    ========================================================================== */
+.about-partners {
+  background: linear-gradient(180deg, var(--color-background) 0%, #f5f0eb 100%);
+  position: relative;
+}
 
+/* Soft top accent divider */
+.about-partners::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 10%, rgba(184, 134, 11, 0.15) 50%, transparent 90%);
+}
+
+.about-partners .eyebrow {
+  color: var(--color-accent);
+}
+
+.about-partners .section-title {
+  color: var(--color-text-primary);
+}
+
+.about-partners .section-text {
+  color: var(--color-text-secondary);
+}
+
+/* Partner Grid — override global grid-2 for tighter control */
+.partner-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+@media (min-width: 768px) {
+  .partner-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-8);
+  }
+}
+
+/* Partner Card — Elevated editorial card */
 .partner-card {
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  border: 1px solid rgba(0, 0, 0, 0.04);
   border-radius: var(--radius-2xl);
-  padding: var(--space-10);
-  box-shadow: var(--shadow-sm);
-  transition: transform var(--duration-base) var(--ease-standard),
-              box-shadow var(--duration-base) var(--ease-standard),
+  padding: var(--space-6) var(--space-5);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--duration-base) var(--ease-spring),
+              box-shadow var(--duration-base) var(--ease-spring),
               border-color var(--duration-base) var(--ease-standard);
 }
 
-.partner-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-lg);
-  border-color: rgba(184, 134, 11, 0.2);
+@media (min-width: 640px) {
+  .partner-card {
+    padding: var(--space-10);
+  }
+}
+
+/* Top accent bar */
+.partner-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-accent) 0%, #d4af37 60%, transparent 100%);
+  opacity: 0;
+  transition: opacity var(--duration-base) var(--ease-standard);
+}
+
+/* Decorative corner glow */
+.partner-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle at top right, rgba(184, 134, 11, 0.05), transparent 70%);
+  pointer-events: none;
+}
+
+@media (hover: hover) {
+  .partner-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.08);
+    border-color: rgba(184, 134, 11, 0.15);
+  }
+
+  .partner-card:hover::before {
+    opacity: 1;
+  }
 }
 
 .partner-card__icon {
-  width: 48px;
-  height: 48px;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(184, 134, 11, 0.08) 0%, rgba(184, 134, 11, 0.15) 100%);
+  border-radius: var(--radius-lg);
   color: var(--color-accent);
-  margin-bottom: var(--space-5);
+  margin-bottom: var(--space-6);
+  transition: transform var(--duration-base) var(--ease-spring),
+              background var(--duration-base) var(--ease-standard);
+}
+
+.partner-card__icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+.partner-card:hover .partner-card__icon {
+  transform: scale(1.08);
+  background: linear-gradient(135deg, rgba(184, 134, 11, 0.12) 0%, rgba(184, 134, 11, 0.22) 100%);
 }
 
 .partner-card__name {
@@ -119,9 +394,13 @@
   font-weight: var(--font-weight-bold);
   color: var(--color-text-primary);
   margin-bottom: var(--space-1);
+  letter-spacing: var(--tracking-tight);
 }
 
 .partner-card__origin {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
   font-size: var(--text-xs);
   color: var(--color-accent);
   font-weight: var(--font-weight-bold);
@@ -130,30 +409,98 @@
   margin-bottom: var(--space-4);
 }
 
+/* Country indicator dot */
+.partner-card__origin::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-circle);
+  background-color: var(--color-accent);
+  flex-shrink: 0;
+}
+
 .partner-card__desc {
   color: var(--color-text-secondary);
-  line-height: var(--line-height-base);
-  font-size: var(--text-base);
+  line-height: var(--line-height-loose);
+  font-size: var(--text-sm);
+}
+
+@media (min-width: 768px) {
+  .partner-card__desc {
+    font-size: var(--text-base);
+  }
 }
 
 
 /* ==========================================================================
-   Quality & Reliability Box
+   Quality & Reliability — Dark premium section
    ========================================================================== */
-
-.quality-box {
-  width: 100%;
-  max-width: 460px;
-  background: var(--color-surface);
-  padding: var(--space-10);
-  border-radius: var(--radius-2xl);
-  text-align: left;
-  box-shadow: var(--shadow-lg);
-  border: 1px solid var(--color-border);
+.about-quality {
+  background: linear-gradient(160deg, #0f1726 0%, #141c2e 45%, #1a2440 100%);
   position: relative;
   overflow: hidden;
+}
+
+/* Override bg-surface class that's on the HTML */
+.about-quality.bg-surface {
+  background-color: transparent;
+}
+
+/* Ambient glow */
+.about-quality::before {
+  content: '';
+  position: absolute;
+  top: -25%;
+  left: -10%;
+  width: 500px;
+  height: 500px;
+  border-radius: var(--radius-circle);
+  background: radial-gradient(circle, rgba(184, 134, 11, 0.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* Override text colors for dark section */
+.about-quality .eyebrow {
+  color: var(--color-accent);
+}
+
+.about-quality .section-title {
+  color: var(--color-surface);
+}
+
+.about-quality .section-text {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Quality Grid — reverse the content + visual layout */
+.about-quality .about-grid {
+  align-items: center;
+}
+
+/* Quality Box — Frosted glass card on dark background */
+.quality-box {
+  width: 100%;
+  max-width: 480px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%);
+  padding: var(--space-6) var(--space-5);
+  border-radius: var(--radius-2xl);
+  text-align: left;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.25),
+              0 0 0 1px rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   transition: transform var(--duration-base) var(--ease-standard),
-              box-shadow var(--duration-base) var(--ease-standard);
+              box-shadow var(--duration-base) var(--ease-standard),
+              border-color var(--duration-base) var(--ease-standard);
+}
+
+@media (min-width: 640px) {
+  .quality-box {
+    padding: var(--space-10);
+  }
 }
 
 /* Accent gradient top bar */
@@ -163,26 +510,31 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 4px;
+  height: 3px;
   background: linear-gradient(90deg, var(--color-accent) 0%, #d4af37 60%, transparent 100%);
   border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
 }
 
-.quality-box:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-xl);
+@media (hover: hover) {
+  .quality-box:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 28px 56px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(184, 134, 11, 0.1);
+    border-color: rgba(184, 134, 11, 0.2);
+  }
 }
 
 .quality-box__icon {
   width: 72px;
   height: 72px;
-  background: linear-gradient(135deg, rgba(184, 134, 11, 0.08) 0%, rgba(184, 134, 11, 0.15) 100%);
+  background: linear-gradient(135deg, rgba(184, 134, 11, 0.14) 0%, rgba(184, 134, 11, 0.06) 100%);
   border-radius: var(--radius-xl);
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: var(--space-6);
   position: relative;
+  box-shadow: inset 0 0 0 1px rgba(184, 134, 11, 0.1);
 }
 
 .quality-box__icon::after {
@@ -190,13 +542,14 @@
   position: absolute;
   inset: -4px;
   border-radius: inherit;
-  border: 2px solid rgba(184, 134, 11, 0.1);
+  border: 1.5px solid rgba(184, 134, 11, 0.15);
   animation: pulse-ring 3s var(--ease-out) infinite;
 }
 
 .quality-box__icon svg {
   width: 36px;
   height: 36px;
+  filter: drop-shadow(0 0 4px rgba(184, 134, 11, 0.25));
 }
 
 .quality-box__title {
@@ -204,36 +557,40 @@
   font-size: var(--text-xl);
   font-weight: var(--font-weight-bold);
   margin-bottom: var(--space-3);
-  color: var(--color-text-primary);
+  color: var(--color-surface);
   letter-spacing: var(--tracking-tight);
 }
 
 .quality-box__desc {
-  color: var(--color-text-secondary);
+  color: rgba(255, 255, 255, 0.55);
   line-height: var(--line-height-loose);
   font-size: var(--text-sm);
   margin-bottom: var(--space-6);
 }
 
+/* Quality Metrics Grid */
 .quality-metrics {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--space-3);
   margin-top: var(--space-6);
   padding-top: var(--space-6);
-  border-top: 1px solid var(--color-divider);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .quality-metric {
   text-align: center;
   padding: var(--space-4) var(--space-2);
   border-radius: var(--radius-lg);
-  background: var(--color-background);
-  transition: transform var(--duration-fast) var(--ease-standard);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: transform var(--duration-fast) var(--ease-standard),
+              background var(--duration-fast) var(--ease-standard);
 }
 
 .quality-metric:hover {
   transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.07);
 }
 
 .quality-metric__value {
@@ -244,11 +601,12 @@
   color: var(--color-accent);
   letter-spacing: var(--tracking-tight);
   margin-bottom: var(--space-1);
+  filter: drop-shadow(0 0 4px rgba(184, 134, 11, 0.15));
 }
 
 .quality-metric__label {
   font-size: var(--text-xs);
-  color: var(--color-text-muted);
+  color: rgba(255, 255, 255, 0.45);
   text-transform: uppercase;
   letter-spacing: var(--tracking-wide);
 }
@@ -260,24 +618,107 @@
 
 
 /* ==========================================================================
-   Values Grid
+   Values — Warm light section with premium card grid
    ========================================================================== */
+.about-values {
+  background: linear-gradient(180deg, #faf8f5 0%, var(--color-background) 100%);
+  position: relative;
+}
 
+/* Top divider accent */
+.about-values::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 10%, rgba(184, 134, 11, 0.12) 50%, transparent 90%);
+}
+
+.about-values .eyebrow {
+  color: var(--color-accent);
+}
+
+.about-values .section-title {
+  color: var(--color-text-primary);
+}
+
+/* Values Grid */
+.values-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+@media (min-width: 640px) {
+  .values-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .values-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Value Card — Premium elevated card */
 .value-item {
-  background-color: var(--color-surface);
-  padding: var(--space-10) var(--space-8);
+  background: var(--color-surface);
+  padding: var(--space-6) var(--space-4);
   border-radius: var(--radius-xl);
   text-align: center;
-  border: 1px solid var(--color-border);
-  transition: transform var(--duration-base) var(--ease-standard),
-              box-shadow var(--duration-base) var(--ease-standard),
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  transition: transform var(--duration-base) var(--ease-spring),
+              box-shadow var(--duration-base) var(--ease-spring),
               border-color var(--duration-base) var(--ease-standard);
 }
 
-.value-item:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
-  border-color: rgba(184, 134, 11, 0.15);
+@media (min-width: 640px) {
+  .value-item {
+    padding: var(--space-10) var(--space-8);
+  }
+}
+
+/* Decorative corner radiance */
+.value-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle at top right, rgba(184, 134, 11, 0.05), transparent 70%);
+  pointer-events: none;
+}
+
+/* Bottom accent border — hidden by default, reveals on hover */
+.value-item::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-accent), #d4af37, transparent);
+  opacity: 0;
+  transition: opacity var(--duration-base) var(--ease-standard);
+}
+
+@media (hover: hover) {
+  .value-item:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.08);
+    border-color: rgba(184, 134, 11, 0.12);
+  }
+
+  .value-item:hover::after {
+    opacity: 1;
+  }
 }
 
 .value-item__icon {
@@ -286,9 +727,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto var(--space-5) auto;
-  background: linear-gradient(135deg, rgba(184, 134, 11, 0.06) 0%, rgba(184, 134, 11, 0.12) 100%);
+  margin: 0 auto var(--space-6) auto;
+  background: linear-gradient(135deg, rgba(184, 134, 11, 0.06) 0%, rgba(184, 134, 11, 0.14) 100%);
   border-radius: var(--radius-xl);
+  box-shadow: inset 0 0 0 1px rgba(184, 134, 11, 0.08);
+  transition: transform var(--duration-base) var(--ease-spring),
+              background var(--duration-base) var(--ease-standard);
+}
+
+.value-item:hover .value-item__icon {
+  transform: scale(1.1);
+  background: linear-gradient(135deg, rgba(184, 134, 11, 0.1) 0%, rgba(184, 134, 11, 0.2) 100%);
 }
 
 .value-item__title {
@@ -297,23 +746,62 @@
   font-weight: var(--font-weight-bold);
   color: var(--color-text-primary);
   margin-bottom: var(--space-3);
+  letter-spacing: var(--tracking-tight);
 }
 
 .value-item__desc {
   color: var(--color-text-secondary);
-  line-height: var(--line-height-base);
+  line-height: var(--line-height-loose);
   font-size: var(--text-sm);
 }
 
-/* About-specific background variation */
-.about-values {
-  background: var(--color-background);
+@media (min-width: 768px) {
+  .value-item__desc {
+    font-size: var(--text-base);
+  }
 }
 
-.about-who-we-are {
-  background: var(--color-surface);
+
+/* ==========================================================================
+   Scroll Reveal Stagger — About-specific timing
+   ========================================================================== */
+.about-who-we-are .reveal-on-scroll,
+.about-experience .reveal-on-scroll,
+.about-partners .reveal-on-scroll,
+.about-quality .reveal-on-scroll,
+.about-values .reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s var(--ease-out),
+              transform 0.8s var(--ease-out);
 }
 
-.about-partners {
-  background: var(--color-background);
+.about-who-we-are .reveal-on-scroll.is-visible,
+.about-experience .reveal-on-scroll.is-visible,
+.about-partners .reveal-on-scroll.is-visible,
+.about-quality .reveal-on-scroll.is-visible,
+.about-values .reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered partner cards */
+.partner-card.reveal-on-scroll:nth-child(2) {
+  transition-delay: 0.15s;
+}
+
+/* Staggered stat cards */
+.stat-card.reveal-on-scroll:nth-child(2) {
+  transition-delay: 0.12s;
+}
+.stat-card.reveal-on-scroll:nth-child(3) {
+  transition-delay: 0.24s;
+}
+
+/* Staggered value items */
+.value-item.reveal-on-scroll:nth-child(2) {
+  transition-delay: 0.1s;
+}
+.value-item.reveal-on-scroll:nth-child(3) {
+  transition-delay: 0.2s;
 }

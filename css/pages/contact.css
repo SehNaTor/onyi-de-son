@@ -48,7 +48,8 @@
 }
 
 .contact-section {
-  background: linear-gradient(180deg, #f8fafc 0%, #f3f4f6 100%);
+  /* background: linear-gradient(180deg, #f8fafc 0%, #f3f4f6 100%); */
+  background: var(--main-background);
 }
 
 .contact-grid {

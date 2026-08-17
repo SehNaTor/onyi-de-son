@@ -130,7 +130,9 @@ table {
   /* Typography Colors */
   --color-text-primary: #111827;
   --color-text-secondary: #4B5563;
-  --color-text-muted: #9CA3AF;
+  --color-text-muted: #9CA3AF
+  ;
+  --color-text-thirdly:#c7ccd6;
   /* Aliases used across page-level stylesheets */
   --color-text: var(--color-text-primary);
   --color-text-light: var(--color-text-secondary);
@@ -147,8 +149,8 @@ table {
   /* Hero system shared across marketing pages */
   --hero-overlay-mobile: linear-gradient(135deg, rgba(17, 24, 39, 0.85) 0%, rgba(17, 24, 39, 0.95) 100%), linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.4) 100%);
   --hero-overlay-desktop: radial-gradient(circle at 70% 30%, rgba(184, 134, 11, 0.15) 0%, transparent 60%), radial-gradient(circle at 30% 50%, rgba(17, 24, 39, 0.4) 0%, rgba(17, 24, 39, 0.85) 80%), linear-gradient(to right, rgba(17, 24, 39, 0.98) 0%, rgba(17, 24, 39, 0.7) 50%, rgba(17, 24, 39, 0.3) 100%);
-  --hero-padding-block-start-mobile: var(--space-8);
-  --hero-padding-block-end-mobile: var(--space-8);
+  --hero-padding-block-start-mobile: var(--space-5);
+  --hero-padding-block-end-mobile: var(--space-5);
   --hero-padding-block-start-tablet: var(--space-16);
   --hero-padding-block-end-tablet: var(--space-12);
   --hero-padding-block-start-desktop: var(--space-24);
@@ -278,7 +280,7 @@ table {
   --container-max-width: 1440px;
   --container-narrow: 800px;
   --container-wide: 1600px;
-  --container-padding: clamp(var(--space-2), 5vw, var(--space-16));
+  --container-padding: clamp(var(--space-1), 4vw, var(--space-12));
 
   --header-height: 72px;
   --header-height-scrolled: 60px;
