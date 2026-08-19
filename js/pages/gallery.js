@@ -1,4 +1,5 @@
 import { supabase } from '../supabase.js';
+import { renderMedia } from '../utils/media.js';
 
 export async function initGalleryPage() {
   const galleryGrid = document.getElementById('gallery-grid');
@@ -8,14 +9,14 @@ export async function initGalleryPage() {
   const lightbox = document.getElementById('gallery-lightbox');
   const lightboxOverlay = document.getElementById('lightbox-overlay');
   const lightboxClose = document.getElementById('lightbox-close');
-  const lightboxImage = document.getElementById('lightbox-image');
+  const lightboxMediaContainer = document.getElementById('lightbox-media-container');
   const lightboxCaption = document.getElementById('lightbox-caption');
 
   // Load Data
   try {
     const { data: galleryItems, error } = await supabase
       .from('gallery')
-      .select('id, image_url, caption, display_order')
+      .select('id, image_url, media_type, caption, display_order')
       .order('display_order', { ascending: true });
 
     if (error) {
@@ -38,25 +39,14 @@ export async function initGalleryPage() {
       article.setAttribute('role', 'button');
       article.setAttribute('aria-label', `View image: ${item.caption || 'Gallery image'}`);
       
-      const img = document.createElement('img');
-      img.src = item.image_url;
-      img.alt = item.caption || 'Gallery Image';
-      img.className = 'gallery-item__image';
-      img.loading = 'lazy';
-      
-      article.appendChild(img);
-
-      if (item.caption) {
-        const overlay = document.createElement('div');
-        overlay.className = 'gallery-item__overlay';
-        
-        const caption = document.createElement('p');
-        caption.className = 'gallery-item__caption';
-        caption.textContent = item.caption;
-        
-        overlay.appendChild(caption);
-        article.appendChild(overlay);
-      }
+      article.innerHTML = `
+        ${renderMedia(item, 'gallery-item__image')}
+        ${item.caption ? `
+          <div class="gallery-item__overlay">
+            <p class="gallery-item__caption">${item.caption}</p>
+          </div>
+        ` : ''}
+      `;
 
       // Event Listeners for Lightbox
       article.addEventListener('click', () => openLightbox(item));
@@ -82,8 +72,14 @@ export async function initGalleryPage() {
 
   // Lightbox Functions
   function openLightbox(item) {
-    lightboxImage.src = item.image_url;
-    lightboxImage.alt = item.caption || 'Gallery Image Full View';
+    // Remove old media element if any
+    const oldMedia = lightboxMediaContainer.querySelector('.gallery-lightbox__image');
+    if (oldMedia) oldMedia.remove();
+
+    // Insert new media element before the caption
+    const mediaHtml = renderMedia(item, 'gallery-lightbox__image');
+    lightboxMediaContainer.insertAdjacentHTML('afterbegin', mediaHtml);
+    
     lightboxCaption.textContent = item.caption || '';
     
     lightbox.classList.add('is-open');
@@ -99,10 +95,11 @@ export async function initGalleryPage() {
     lightbox.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('lightbox-open');
     
-    // Clear src after transition ends so it doesn't flash the old image next time
+    // Clear media after transition ends so it doesn't flash the old content next time
     setTimeout(() => {
       if (!lightbox.classList.contains('is-open')) {
-        lightboxImage.src = '';
+        const oldMedia = lightboxMediaContainer.querySelector('.gallery-lightbox__image');
+        if (oldMedia) oldMedia.remove();
       }
     }, 300);
   }

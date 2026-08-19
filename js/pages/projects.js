@@ -1,4 +1,5 @@
 import { fetchActiveProjects } from '../services/projectService.js';
+import { renderMedia } from '../utils/media.js';
 
 /**
  * Initializes the projects page logic.
@@ -67,7 +68,7 @@ function createProjectCard(project) {
     <article class="project-card reveal-on-scroll">
       <div class="project-card__img-wrap">
         ${categoryBadge}
-        <img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(project.title || 'Project image')}" class="project-card__img" loading="lazy">
+        ${renderMedia(project, 'project-card__img', fallbackImage)}
       </div>
       <div class="project-card__content">
         <h3 class="project-card__title">${escapeHtml(project.title || 'Untitled Project')}</h3>

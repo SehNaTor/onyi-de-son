@@ -1,6 +1,7 @@
 import { API } from './api.js';
 import { UI } from './ui.js';
-import { ImageUploader } from '../components/ImageUploader.js';
+import { MediaUploader } from '../components/MediaUploader.js';
+import { renderMedia } from '../utils/media.js';
 
 let currentItems = [];
 let currentEditId = null;
@@ -64,7 +65,7 @@ export const ProductsController = {
     tbody.innerHTML = currentItems.map(item => `
       <tr>
         <td>
-          <img src="${item.image_url || ''}" class="table-thumbnail" alt="Image" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNjY2MiIHN0cm9rZS13aWR0aD0iMiI+PHJlY3QgeD0iMyIgeT0iMyIgd2lkdGg9IjE4IiBoZWlnaHQ9IjE4IiByeD0iMiIvPjxsaW5lIHgxPSI5IiB5MT0iOSIgeDI9IjE1IiB5Mj0iMTUiLz48bGluZSB4MT0iMTUiIHkxPSI5IiB4Mj0iOSIgeTI9IjE1Ii8+PC9zdmc+'" />
+          ${renderMedia(item, 'table-thumbnail')}
         </td>
         <td>
           <div style="font-weight: 600; margin-bottom: 0.25rem;">${item.name || 'Untitled'}</div>
@@ -115,8 +116,8 @@ export const ProductsController = {
         </div>
 
         <div class="form-group">
-          <label class="form-label">Product Image</label>
-          <div id="product-image-uploader"></div>
+          <label class="form-label">Product Media</label>
+          <div id="product-media-uploader"></div>
         </div>
         
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
@@ -153,11 +154,10 @@ export const ProductsController = {
       </form>
     `;
 
-    // Initialize Image Uploader
-    const imageUploader = new ImageUploader('product-image-uploader', {
-      defaultImage: item?.image_url || null,
-      maxSizeMB: 5,
-      acceptedTypes: ['image/jpeg', 'image/png', 'image/webp']
+    // Initialize Media Uploader
+    const mediaUploader = new MediaUploader('product-media-uploader', {
+      defaultMedia: item?.image_url || null,
+      defaultMediaType: item?.media_type || 'image'
     });
 
     // Handle submit
@@ -168,14 +168,15 @@ export const ProductsController = {
       saveBtn.textContent = 'Saving...';
       
       try {
-        // Upload image first if needed
-        const uploadedUrl = await imageUploader.upload();
+        // Upload media first if needed
+        const uploadedMedia = await mediaUploader.upload();
 
         const payload = {
           name: document.getElementById('name').value.trim(),
           category: document.getElementById('category').value,
           description: document.getElementById('description').value.trim(),
-          image_url: uploadedUrl || '',
+          image_url: uploadedMedia?.url || '',
+          media_type: uploadedMedia?.type || 'image',
           enquiry_url: document.getElementById('enquiry_url').value.trim() || 'contact.html',
           enquiry_text: document.getElementById('enquiry_text').value.trim() || 'Inquiries',
           is_active: document.getElementById('status').value === 'active',

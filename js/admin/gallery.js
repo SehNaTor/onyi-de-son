@@ -1,6 +1,7 @@
 import { API } from './api.js';
 import { UI } from './ui.js';
-import { ImageUploader } from '../components/ImageUploader.js';
+import { MediaUploader } from '../components/MediaUploader.js';
+import { renderMedia } from '../utils/media.js';
 
 let currentItems = [];
 let currentEditId = null;
@@ -63,7 +64,7 @@ export const GalleryController = {
     tbody.innerHTML = currentItems.map(item => `
       <tr>
         <td>
-          <img src="${item.image_url}" class="table-thumbnail" alt="Thumbnail" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNjY2MiIHN0cm9rZS13aWR0aD0iMiI+PHJlY3QgeD0iMyIgeT0iMyIgd2lkdGg9IjE4IiBoZWlnaHQ9IjE4IiByeD0iMiIvPjxsaW5lIHgxPSI5IiB5MT0iOSIgeDI9IjE1IiB5Mj0iMTUiLz48bGluZSB4MT0iMTUiIHkxPSI5IiB4Mj0iOSIgeTI9IjE1Ii8+PC9zdmc+'" />
+          ${renderMedia(item, 'table-thumbnail')}
         </td>
         <td>${item.caption || '<span class="badge badge-muted">No caption</span>'}</td>
         <td>${item.display_order || 0}</td>
@@ -87,8 +88,8 @@ export const GalleryController = {
     modalBody.innerHTML = `
       <form id="gallery-form">
         <div class="form-group">
-          <label class="form-label">Gallery Image *</label>
-          <div id="gallery-image-uploader"></div>
+          <label class="form-label">Gallery Media *</label>
+          <div id="gallery-media-uploader"></div>
         </div>
         
         <div class="form-group">
@@ -108,11 +109,10 @@ export const GalleryController = {
       </form>
     `;
 
-    // Initialize Image Uploader
-    const imageUploader = new ImageUploader('gallery-image-uploader', {
-      defaultImage: item?.image_url || null,
-      maxSizeMB: 5,
-      acceptedTypes: ['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml']
+    // Initialize Media Uploader
+    const mediaUploader = new MediaUploader('gallery-media-uploader', {
+      defaultMedia: item?.image_url || null,
+      defaultMediaType: item?.media_type || 'image'
     });
 
     // Handle submit
@@ -123,14 +123,15 @@ export const GalleryController = {
       saveBtn.textContent = 'Saving...';
       
       try {
-        const uploadedUrl = await imageUploader.upload();
+        const uploadedMedia = await mediaUploader.upload();
         
-        if (!uploadedUrl) {
-          throw new Error('An image is required for the gallery.');
+        if (!uploadedMedia || !uploadedMedia.url) {
+          throw new Error('Media is required for the gallery.');
         }
 
         const payload = {
-          image_url: uploadedUrl,
+          image_url: uploadedMedia.url,
+          media_type: uploadedMedia.type,
           caption: document.getElementById('caption').value.trim(),
           display_order: parseInt(document.getElementById('display_order').value) || 0
         };

@@ -60,6 +60,10 @@
   overflow: hidden;
   background-color: var(--color-primary);
   isolation: isolate;
+  background-image: url('https://res.cloudinary.com/vwrjamwn/image/upload/v1784937108/IMG-20260724-WA0051_pe8kgh.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   /* padding-block: var(--hero-padding-block-mobile); */
   /* padding: var(--container-padding); */
   padding-top: var(--header-height);

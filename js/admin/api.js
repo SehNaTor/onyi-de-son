@@ -79,5 +79,29 @@ export const API = {
       return { error: new Error('Permission denied or item not found. 0 rows deleted.') };
     }
     return response;
+  },
+
+  // --- Blogs ---
+  async fetchBlogs() {
+    return await supabase
+      .from('blogs')
+      .select('*')
+      .order('created_at', { ascending: false });
+  },
+
+  async saveBlog(blog) {
+    if (blog.id) {
+      return await supabase.from('blogs').update(blog).eq('id', blog.id);
+    } else {
+      return await supabase.from('blogs').insert([blog]);
+    }
+  },
+
+  async deleteBlog(id) {
+    const response = await supabase.from('blogs').delete().eq('id', id).select();
+    if (!response.error && response.data && response.data.length === 0) {
+      return { error: new Error('Permission denied or item not found. 0 rows deleted.') };
+    }
+    return response;
   }
 };

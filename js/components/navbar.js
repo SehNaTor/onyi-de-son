@@ -62,6 +62,7 @@ class Navbar {
               <li class="nav__item"><a href="projects.html" class="nav__link focus-ring">Projects</a></li>
               <li class="nav__item"><a href="services.html" class="nav__link focus-ring">Services</a></li>
               <li class="nav__item"><a href="gallery.html" class="nav__link focus-ring">Gallery</a></li>
+              <li class="nav__item"><a href="blog.html" class="nav__link focus-ring">Blog</a></li>
               <li class="nav__item"><a href="about.html" class="nav__link focus-ring">About</a></li>
             </ul>
           </nav>
@@ -126,6 +127,7 @@ class Navbar {
           <li><a href="projects.html" class="nav__mobile-link focus-ring">Projects</a></li>
           <li><a href="services.html" class="nav__mobile-link focus-ring">Services</a></li>
           <li><a href="gallery.html" class="nav__mobile-link focus-ring">Gallery</a></li>
+          <li><a href="blog.html" class="nav__mobile-link focus-ring">Blog</a></li>
           <li><a href="about.html" class="nav__mobile-link focus-ring">About</a></li>
         </ul>
 

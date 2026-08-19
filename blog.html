@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Insights & Updates | Onyi De Son of Grace</title>
+  
+  <meta name="description" content="Discover industry insights, product information, and company updates from Onyii De Son of Grace, your trusted premium material supplier.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Global System Styles -->
+  <link rel="stylesheet" href="./css/global.css">
+  <link rel="stylesheet" href="./css/navbar.css">
+  <link rel="stylesheet" href="./css/footer.css">
+  
+  <!-- Page Specific Styles -->
+  <link rel="stylesheet" href="./css/pages/blog.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="site-header">
+    <div data-navbar-root></div>
+  </header>
+
+  <main class="main-container pt-nav" id="main-content">
+    
+    <!-- Hero Section -->
+    <header class="blog-hero section-padding">
+      <div class="container reveal-on-scroll">
+        <span class="eyebrow">Insights & Updates</span>
+        <h1 class="blog-hero__title">Industry Knowledge.</h1>
+        <p class="blog-hero__desc">
+          Stay informed with our latest company updates, material application guides, and expert industry insights.
+        </p>
+      </div>
+    </header>
+
+    <!-- Blog Content Grid -->
+    <section class="blog-content section-padding">
+      <div class="container">
+        <!-- Render Target for Blog Cards -->
+        <div id="blog-grid" class="blog-grid">
+          <!-- Skeletons loaded by JS initially -->
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section (reused from global design) -->
+    <section class="cta-band section-padding text-center">
+      <div class="container reveal-on-scroll">
+        <h2 class="cta-band__title">Need specialized materials?</h2>
+        <p class="cta-band__desc">Contact our sales team today to discuss your industrial tarpaulin requirements.</p>
+        <div class="cta-band__actions">
+          <a href="contact.html" class="btn-primary focus-ring">Contact Us</a>
+          <a href="products.html" class="btn-outline focus-ring">View Products</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <div data-footer-root></div>
+
+  <!-- JavaScript Modules -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  
+  <!-- Components -->
+  <script type="module">
+    import CONFIG from './js/config.js';
+    import Navbar from './js/components/navbar.js';
+    import { SiteFooter } from './js/components/site-footer.js';
+    import { initLenis } from './js/components/lenis.js';
+
+    // Initialize Shared UI Components
+    document.addEventListener('DOMContentLoaded', () => {
+      try {
+        new Navbar();
+      } catch (err) {
+        console.error('Navbar Initialization Error:', err);
+      }
+      
+      try {
+        new SiteFooter();
+      } catch (err) {
+        console.error('SiteFooter Initialization Error:', err);
+      }
+      
+      try {
+        initLenis();
+      } catch (err) {
+        console.warn('Lenis Initialization Warning:', err);
+      }
+      
+      // Basic Intersection Observer for reveal-on-scroll elements
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.reveal-on-scroll').forEach(el => {
+        observer.observe(el);
+      });
+    });
+  </script>
+  
+  <!-- Page Specific Logic -->
+  <script type="module" src="./js/pages/blog.js"></script>
+
+</body>
+</html>

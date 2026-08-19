@@ -41,6 +41,7 @@ function normalizeProject(project) {
     description,
     category,
     image_url: imageUrl || FALLBACK_IMAGE,
+    media_type: project.media_type || 'image',
     featured: Boolean(project.featured),
     display_order: Number(project.display_order) || 0,
     status: sanitizeText(project.status, 'active')
@@ -51,7 +52,7 @@ export async function fetchFeaturedProjects({ limit = HOMEPAGE_PROJECT_LIMIT } =
   try {
     let query = supabase
       .from('projects')
-      .select('id, title, description, category, image_url, featured, display_order, status')
+      .select('id, title, description, category, image_url, media_type, featured, display_order, status')
       .eq('status', 'active')
       .eq('featured', true)
       .order('display_order', { ascending: true });

@@ -1,3 +1,5 @@
+import { renderMedia } from '../utils/media.js';
+
 function escapeHtml(value) {
   return String(value)
     .replaceAll('&', '&amp;')
@@ -21,13 +23,7 @@ export function createProjectCard(project) {
   return `
     <article class="project-card reveal-on-scroll" aria-label="${title}">
       <div class="project-card__image-wrapper">
-        <img
-          src="${imageUrl}"
-          alt="${altText}"
-          class="project-card__image"
-          loading="lazy"
-          decoding="async"
-        >
+        ${renderMedia(project, 'project-card__image')}
       </div>
       <div class="project-card__content">
         <h3 class="project-card__title">${title}</h3>

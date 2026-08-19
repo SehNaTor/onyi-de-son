@@ -1,15 +1,19 @@
+import { DashboardController } from './dashboard.js';
 import { GalleryController } from './gallery.js';
 import { ProjectsController } from './projects.js';
 import { ProductsController } from './products.js';
 import { ContactsController } from './contacts.js';
+import { BlogController } from './blog.js';
 import { UI } from './ui.js';
 import { AuthService } from '../auth/authService.js';
 
 // Expose controllers and UI globally for inline HTML event handlers (e.g. onclick="window.GalleryController.editItem()")
+window.DashboardController = DashboardController;
 window.GalleryController = GalleryController;
 window.ProjectsController = ProjectsController;
 window.ProductsController = ProductsController;
 window.ContactsController = ContactsController;
+window.BlogController = BlogController;
 window.UI = UI;
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -44,7 +48,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (mobileToggle) mobileToggle.addEventListener('click', toggleSidebar);
   if (mobileClose) mobileClose.addEventListener('click', toggleSidebar);
 
-  let currentView = 'gallery';
+  let currentView = 'dashboard';
 
   // Routing / View Switching
   const loadView = async (viewName) => {
@@ -65,15 +69,33 @@ document.addEventListener('DOMContentLoaded', async () => {
       sidebar.classList.remove('is-open');
     }
 
+    // Hide "Add New" button on Dashboard and Contacts
+    if (viewName === 'dashboard' || viewName === 'contacts') {
+      if (btnAddNew) btnAddNew.style.display = 'none';
+    } else {
+      if (btnAddNew) btnAddNew.style.display = 'inline-flex';
+    }
+
     // Render respective controller
-    if (viewName === 'gallery') {
-      await GalleryController.renderView(contentArea);
-    } else if (viewName === 'projects') {
-      await ProjectsController.renderView(contentArea);
-    } else if (viewName === 'products') {
-      await ProductsController.renderView(contentArea);
-    } else if (viewName === 'contacts') {
-      await ContactsController.renderView(contentArea);
+    switch (viewName) {
+      case 'dashboard':
+        await DashboardController.renderView(contentArea);
+        break;
+      case 'gallery':
+        await GalleryController.renderView(contentArea);
+        break;
+      case 'projects':
+        await ProjectsController.renderView(contentArea);
+        break;
+      case 'products':
+        await ProductsController.renderView(contentArea);
+        break;
+      case 'blog':
+        await BlogController.renderView(contentArea);
+        break;
+      case 'contacts':
+        await ContactsController.renderView(contentArea);
+        break;
     }
   };
 
@@ -91,25 +113,34 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Bind "Add New" Button
   if (btnAddNew) {
     btnAddNew.addEventListener('click', () => {
-      if (currentView === 'gallery') {
-        GalleryController.showForm();
-      } else if (currentView === 'projects') {
-        ProjectsController.showForm();
-      } else if (currentView === 'products') {
-        ProductsController.showForm();
+      switch (currentView) {
+        case 'gallery':
+          GalleryController.showForm();
+          break;
+        case 'projects':
+          ProjectsController.showForm();
+          break;
+        case 'products':
+          ProductsController.showForm();
+          break;
+        case 'blog':
+          BlogController.showForm();
+          break;
       }
     });
   }
 
   // Handle hash routing on load
   const hash = window.location.hash.replace('#', '');
-  if (hash === 'projects') {
+  if (hash === 'gallery') {
+    loadView('gallery');
+  } else if (hash === 'projects') {
     loadView('projects');
   } else if (hash === 'products') {
     loadView('products');
   } else if (hash === 'contacts') {
     loadView('contacts');
   } else {
-    loadView('gallery');
+    loadView('dashboard');
   }
 });

@@ -9,7 +9,7 @@ export async function fetchActiveProjects() {
   try {
     const { data, error } = await supabase
       .from('projects')
-      .select('id, title, description, category, image_url, featured, display_order, status')
+      .select('id, title, description, category, image_url, media_type, featured, display_order, status')
       .eq('status', 'active')
       .order('display_order', { ascending: true });
 

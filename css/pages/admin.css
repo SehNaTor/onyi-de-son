@@ -241,7 +241,9 @@ body.admin-body {
 }
 
 .table-responsive {
+  width: 100%;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .admin-table {
@@ -521,16 +523,54 @@ textarea.form-control {
 @media (max-width: 768px) {
   .admin-sidebar {
     transform: translateX(-100%);
+    width: 280px; /* Slightly wider for touch targets on mobile */
   }
   .admin-sidebar.is-open {
     transform: translateX(0);
-    box-shadow: 4px 0 25px rgba(0,0,0,0.1);
+    box-shadow: 4px 0 25px rgba(0,0,0,0.15);
   }
   .mobile-close { display: block; }
   .mobile-toggle { display: block; }
-  .admin-main { margin-left: 0; }
-  .admin-header { padding: 0 1rem; }
-  .admin-content { padding: 1rem; }
+  .admin-main { margin-left: 0; width: 100%; max-width: 100vw; }
+  
+  .admin-header { 
+    padding: 0 1rem; 
+    height: 60px;
+  }
+  
+  .admin-content { 
+    padding: 1rem; 
+    /* Prevent horizontal scroll from content padding */
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .admin-card {
+    border-radius: 8px; /* Slightly smaller radius on mobile */
+  }
+
+  /* Make sure buttons stack or fit nicely */
+  .header-left { gap: 0.5rem; }
+  .page-title { font-size: 1.125rem; }
+  
+  .btn-primary, .btn-danger, .btn-outline {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8125rem;
+  }
+
+  .admin-table th, .admin-table td {
+    padding: 0.75rem 1rem;
+    white-space: nowrap; /* Keep table clean, let it scroll horizontally */
+  }
+  
+  .modal-dialog {
+    margin: 0.5rem;
+    max-height: 95vh;
+  }
+  
+  .modal-body {
+    padding: 1rem;
+  }
 }
 
 /* Image Uploader Component */
