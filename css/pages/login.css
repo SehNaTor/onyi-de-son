@@ -61,6 +61,14 @@ body.login-body {
   margin-bottom: 2rem;
 }
 
+.login-logo {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+}
+
 .login-title {
   font-family: 'Manrope', sans-serif;
   font-size: 1.75rem;

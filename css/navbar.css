@@ -60,6 +60,14 @@
   transition: color var(--transition-base), transform var(--transition-fast);
 }
 
+.nav__brand-logo {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  flex-shrink: 0;
+  border-radius: 6px;
+}
+
 .nav__brand-text {
   display: flex;
   flex-direction: column;

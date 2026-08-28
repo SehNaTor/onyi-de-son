@@ -102,10 +102,12 @@
   opacity: 0.9;
 }
 
-.site-footer__brand-icon {
-  width: 32px;
-  height: 32px;
+.site-footer__brand-logo {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
   flex-shrink: 0;
+  border-radius: 4px;
 }
 
 .site-footer__description {

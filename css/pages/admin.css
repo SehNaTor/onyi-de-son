@@ -53,6 +53,7 @@ body.admin-body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 0.5rem;
   padding: 0 1.5rem;
   border-bottom: 1px solid var(--admin-border);
 }
@@ -62,6 +63,14 @@ body.admin-body {
   font-weight: 700;
   font-size: 1.25rem;
   color: var(--admin-text);
+}
+
+.sidebar-brand-logo {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  flex-shrink: 0;
+  border-radius: 4px;
 }
 
 .mobile-close {

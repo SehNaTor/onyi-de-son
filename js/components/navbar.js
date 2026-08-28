@@ -34,13 +34,9 @@ class Navbar {
           
           <!-- Brand Logo -->
           <a href="index.html" class="nav__brand focus-ring" aria-label="Onyii Deson Global Tarpaulin - Home">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="flex-shrink: 0;">
-              <rect width="32" height="32" rx="8" fill="var(--color-primary)"/>
-              <path d="M16 8L24 22H8L16 8Z" fill="var(--color-accent)"/>
-            </svg>
+            <img src="./assets/onyii-logo.png" alt="Onyii De Son Logo" class="nav__brand-logo" width="44" height="44">
             <span class="nav__brand-text">
-              <span class="nav__brand-primary">Onyii Deson</span>
-              <span class="nav__brand-secondary">Global Tarpaulin</span>
+              <span class="nav__brand-primary">Onyii De son <span>Global Tarpaulin </span> </span>
             </span>
           </a>
 
@@ -93,13 +89,9 @@ class Navbar {
       <nav class="nav__mobile-menu" id="mobile-menu" aria-label="Mobile Navigation" data-navbar="mobile-menu">
         <div class="nav__mobile-header">
           <a href="index.html" class="nav__brand focus-ring" aria-label="Onyii Deson Global Tarpaulin - Home">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="flex-shrink: 0;">
-              <rect width="32" height="32" rx="8" fill="var(--color-primary)"/>
-              <path d="M16 8L24 22H8L16 8Z" fill="var(--color-accent)"/>
-            </svg>
+            <img src="./assets/onyii-logo.png" alt="Onyii De Son Logo" class="nav__brand-logo" width="44" height="44">
             <span class="nav__brand-text">
               <span class="nav__brand-primary">Onyii Deson</span>
-              <span class="nav__brand-secondary">Global Tarpaulin</span>
             </span>
           </a>
           <button class="nav__mobile-close focus-ring" aria-label="Close menu" data-navbar="mobile-close">

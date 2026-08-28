@@ -28,6 +28,8 @@ export const AnalyticsService = {
         supabase.from('blogs').select('is_published')
       ]);
 
+      
+
       // Check for errors in any request
       if (galleryResult.error) throw galleryResult.error;
       if (projectsResult.error) throw projectsResult.error;
@@ -106,6 +108,10 @@ export const AnalyticsService = {
         data: null,
         error: error.message || 'An error occurred while fetching analytics.'
       };
+
+      
+
+      
     }
   }
 };
