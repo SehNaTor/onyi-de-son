@@ -298,8 +298,233 @@
   background: rgba(59, 130, 246, 0.06);
 }
 
+/* ==========================================
+   FOOTER CONTACT CARD
+========================================== */
 
-/* ==========================================================================
+.site-footer__card--contact {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Contact introduction */
+
+.site-footer__contact-intro {
+  margin: 0 0 1.25rem;
+  max-width: 34rem;
+
+  font-size: 0.9rem;
+  line-height: 1.7;
+
+  color: var(--text-muted, rgba(255, 255, 255, 0.7));
+}
+
+
+/* ==========================================
+   CONTACT LIST
+========================================== */
+
+.site-footer__contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+
+/* ==========================================
+   CONTACT ITEM
+========================================== */
+
+.site-footer__contact-item {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+
+  width: 100%;
+  padding: 0.85rem;
+
+  text-decoration: none;
+  color: inherit;
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.05),
+      rgba(255, 255, 255, 0.015)
+    );
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+
+/* Hover */
+
+.site-footer__contact-item:hover {
+  transform: translateY(-3px);
+
+  border-color: rgba(255, 255, 255, 0.22);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.09),
+      rgba(255, 255, 255, 0.03)
+    );
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.18);
+}
+
+
+/* Keyboard accessibility */
+
+.site-footer__contact-item:focus-visible {
+  outline: 2px solid var(--primary-color, #ff7a00);
+  outline-offset: 3px;
+}
+
+
+/* ==========================================
+   CONTACT ICON
+========================================== */
+
+.site-footer__contact-icon {
+  display: grid;
+  place-items: center;
+
+  flex-shrink: 0;
+
+  width: 42px;
+  height: 42px;
+
+  border-radius: 50%;
+
+  color: var(--primary-color, #ff7a00);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 122, 0, 0.18),
+      rgba(255, 122, 0, 0.06)
+    );
+
+  border: 1px solid rgba(255, 122, 0, 0.18);
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease;
+}
+
+
+.site-footer__contact-item:hover .site-footer__contact-icon {
+  transform: scale(1.06);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 122, 0, 0.28),
+      rgba(255, 122, 0, 0.1)
+    );
+}
+
+
+.site-footer__contact-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+
+/* ==========================================
+   CONTACT TEXT
+========================================== */
+
+.site-footer__contact-content {
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+}
+
+
+.site-footer__contact-label {
+  margin-bottom: 0.2rem;
+
+  font-size: 0.75rem;
+  font-weight: 600;
+
+  color: var(--text-muted, rgba(255, 255, 255, 0.6));
+
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+
+.site-footer__contact-value {
+  overflow: hidden;
+
+  font-size: 0.9rem;
+  font-weight: 600;
+
+  color: var(--text-light, #ffffff);
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+
+/* ==========================================
+   MOBILE OPTIMIZATION
+========================================== */
+
+@media (max-width: 480px) {
+  .site-footer__contact-item {
+    padding: 0.8rem;
+  }
+
+  .site-footer__contact-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .site-footer__contact-value {
+    font-size: 0.85rem;
+  }
+
+  .site-footer__contact-intro {
+    font-size: 0.88rem;
+  }
+}
+
+
+/* ==========================================
+   REDUCED MOTION
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .site-footer__contact-item,
+  .site-footer__contact-icon {
+    transition: none;
+  }
+
+  .site-footer__contact-item:hover {
+    transform: none;
+  }
+
+  .site-footer__contact-item:hover .site-footer__contact-icon {
+    transform: none;
+  }
+}
+
+
+/* 
+==========================================================================
    Bottom Bar
    ========================================================================== */
 .site-footer__bottom {
