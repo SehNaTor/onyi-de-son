@@ -121,7 +121,7 @@ table {
   --color-surface-hover: #F8F9FA;
   --color-background: #FAFAFA;
   --color-card-background: #FFFFFF;
-  --main-background:linear-gradient(135deg, rgba(15, 23, 39, 0.85) 0%, rgba(18, 27, 46, 0.95) 100%), linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.4) 100%);
+  --main-background: linear-gradient(135deg, rgba(15, 23, 39, 0.85) 0%, rgba(18, 27, 46, 0.95) 100%), linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.4) 100%);
 
   /* Borders & Dividers */
   --color-border: #E5E7EB;
@@ -130,9 +130,8 @@ table {
   /* Typography Colors */
   --color-text-primary: #111827;
   --color-text-secondary: #4B5563;
-  --color-text-muted: #9CA3AF
-  ;
-  --color-text-thirdly:#c7ccd6;
+  --color-text-muted: #9CA3AF;
+  --color-text-thirdly: #c7ccd6;
   /* Aliases used across page-level stylesheets */
   --color-text: var(--color-text-primary);
   --color-text-light: var(--color-text-secondary);
@@ -319,6 +318,7 @@ h6 {
   color: var(--color-text-primary);
   margin-bottom: var(--space-4);
   letter-spacing: var(--tracking-tight);
+  font-size: 28px;
 }
 
 
@@ -841,13 +841,13 @@ html.lenis body {
    Page Hero — Light gradient hero for inner pages
    ---------------------------------------------------------- */
 .page-hero {
-   background: var(--hero-overlay-mobile);
+  background: var(--hero-overlay-mobile);
   border-bottom: 1px solid var(--color-border);
 }
 
 .page-hero__title {
   font-family: var(--font-heading);
-  font-size: clamp(2rem, 5vw + 0.5rem, 4rem);
+  /* font-size: clamp(2rem, 5vw + 0.5rem, 4rem); */
   font-weight: var(--font-weight-bold);
   line-height: var(-line-height-tight);
   color: var(--color-surface);
@@ -1091,7 +1091,7 @@ html.lenis body {
   opacity: 0;
   transform: translateY(24px) scale(0.95);
   transition: opacity var(--duration-base) var(--ease-spring),
-              transform var(--duration-base) var(--ease-spring);
+    transform var(--duration-base) var(--ease-spring);
   border-left: 4px solid transparent;
 }
 
