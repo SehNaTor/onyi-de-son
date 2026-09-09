@@ -13,7 +13,7 @@ export const ContactsController = {
               <tr>
                 <th>Name</th>
                 <th>Email</th>
-                <th>Description</th>
+                <th class="col-message">Description</th>
                 <th>Created</th>
                 <th class="actions-cell">Actions</th>
               </tr>
@@ -65,7 +65,7 @@ export const ContactsController = {
 
     tbody.innerHTML = currentContacts.map((item) => {
       const createdAt = item.created_at ? new Date(item.created_at).toLocaleString() : 'Unknown';
-      const shortDescription = item.description ? String(item.description).slice(0, 90) : 'No description provided';
+      const fullDescription = item.description ? String(item.description).trim() : 'No description provided';
       const emailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${item.email || ''}`;
       return `
         <tr>
@@ -73,7 +73,9 @@ export const ContactsController = {
             <div style="font-weight: 600;">${this.escape(item.name || 'Unknown')}</div>
           </td>
           <td>${this.escape(item.email || '—')}</td>
-          <td>${this.escape(shortDescription)}</td>
+          <td class="message-cell">
+            <div class="admin-message-bubble">${this.escape(fullDescription)}</div>
+          </td>
           <td>${this.escape(createdAt)}</td>
           <td class="actions-cell">
             <button class="btn-icon" onclick="window.ContactsController.viewItem('${item.id}')" aria-label="View details">
@@ -92,7 +94,7 @@ export const ContactsController = {
   },
 
   async viewItem(id) {
-    const item = currentContacts.find((contact) => contact.id === id);
+    const item = currentContacts.find((contact) => String(contact.id) === String(id));
     if (!item) return;
 
     UI.openModal('admin-modal', 'Contact Details');
@@ -108,8 +110,8 @@ export const ContactsController = {
           <div><a href="https://mail.google.com/mail/?view=cm&fs=1&to=${this.escape(item.email || '')}" target="_blank" rel="noopener noreferrer">${this.escape(item.email || '—')}</a></div>
         </div>
         <div class="form-group">
-          <label>Description</label>
-          <div>${this.escape(item.description || 'No description provided')}</div>
+          <label>Description / Full Message</label>
+          <div class="admin-modal-message-view">${this.escape(item.description || 'No description provided')}</div>
         </div>
         <div class="form-group">
           <label>Created</label>

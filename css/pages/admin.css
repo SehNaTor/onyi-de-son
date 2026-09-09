@@ -306,6 +306,75 @@ body.admin-body {
   white-space: nowrap;
 }
 
+/* Full Text Columns (Contacts Description & Reviews) */
+.col-message {
+  min-width: 280px;
+  max-width: 480px;
+}
+
+.message-cell {
+  min-width: 280px;
+  max-width: 480px;
+  vertical-align: top;
+}
+
+.admin-message-bubble {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--admin-text);
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  background-color: var(--admin-bg);
+  border: 1px solid var(--admin-border);
+  border-radius: 8px;
+  padding: 0.625rem 0.875rem;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.admin-message-bubble::-webkit-scrollbar {
+  width: 5px;
+}
+
+.admin-message-bubble::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.admin-message-bubble::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.15);
+  border-radius: 9999px;
+}
+
+.admin-modal-message-view {
+  background-color: var(--admin-bg);
+  border: 1px solid var(--admin-border);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--admin-text);
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  max-height: 380px;
+  overflow-y: auto;
+  user-select: text;
+}
+
+.admin-modal-message-view::-webkit-scrollbar {
+  width: 6px;
+}
+
+.admin-modal-message-view::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.admin-modal-message-view::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.15);
+  border-radius: 9999px;
+}
+
 /* Badges */
 .badge {
   display: inline-flex;

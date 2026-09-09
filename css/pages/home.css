@@ -1104,7 +1104,8 @@
 
 .project-card__image-wrapper {
   position: relative;
-  aspect-ratio: 4 / 3; /* Saves viewport on small screens */
+  aspect-ratio: 1 / 1;
+  min-height: 280px;
   overflow: hidden;
   background: var(--color-background);
 }

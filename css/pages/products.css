@@ -718,6 +718,20 @@
   }
 }
 
+@media (min-width: 1024px) {
+  .product-cards {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-10);
+  }
+}
+
+@media (min-width: 1280px) {
+  .product-cards {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-8);
+  }
+}
+
 .prod-card {
   background-color: var(--color-surface);
   border-radius: var(--radius-2xl);
@@ -1161,8 +1175,22 @@
 
 @media (min-width: 768px) {
   .partnership-gallery {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--space-8);
+  }
+}
+
+@media (min-width: 1024px) {
+  .partnership-gallery {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-8);
+  }
+}
+
+@media (min-width: 1280px) {
+  .partnership-gallery {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-10);
   }
 }
 

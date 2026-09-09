@@ -22,6 +22,7 @@
   <link rel="stylesheet" href="./css/global.css">
   <link rel="stylesheet" href="./css/navbar.css">
   <link rel="stylesheet" href="./css/pages/home.css">
+  <link rel="stylesheet" href="./css/pages/reviews.css">
   <link rel="stylesheet" href="./css/footer.css">
 </head>
 <body>
@@ -65,7 +66,7 @@
           </p>
           <div class="hero__actions">
             <a href="contact.html" class="btn-primary hero__btn-primary focus-ring">Contact Us</a>
-            <a href="products.html" class="btn-outline hero__btn-outline focus-ring">Explore Products</a>
+            <a href="products.html" class="btn-outline hero__btn-outline focus-ring">View Products</a>
           </div>
         </div>
       </div>
@@ -155,7 +156,7 @@
     <section class="products section-padding" id="featured-products" aria-labelledby="products-heading" style="background: linear-gradient(280deg, #e9ecef 20%, #f8f9fa 100%);">
         <div class="products__header reveal-on-scroll">
           <span class="products__label">Our Products</span>
-          <h2 id="products-heading" class="products__heading">Featured Products</h2>
+          <h2 id="products-heading" class="products__heading"> Products Highlights</h2>
           <p class="products__intro">
             Explore our curated selection of premium tarpaulin and car port materials engineered for durability, designed for performance, and priced for value.
           </p>
@@ -422,6 +423,8 @@
     </section>
 
 
+    <div data-reviews-root></div>
+
     <!-- ================================================================
          CTA BAND SECTION — Consistent Cross-Page Call To Action
          ================================================================ -->
@@ -430,7 +433,7 @@
         <h2 class="cta-band__title">Ready to start your project?</h2>
         <p class="cta-band__desc">Discover our range of premium materials or speak with our experts today.</p>
         <div class="cta-band__actions">
-          <a href="products.html" class="btn-primary focus-ring">Explore Products</a>
+          <a href="products.html" class="btn-primary focus-ring">View Products</a>
           <a href="contact.html" class="btn-outline focus-ring">Contact Us</a>
         </div>
       </div>
@@ -456,6 +459,7 @@
     import Navbar from './js/components/navbar.js';
     import { CompletedProjectsSection } from './js/components/completed-projects-section.js';
     import { SiteFooter } from './js/components/site-footer.js';
+    import { ReviewsSection } from './js/components/reviews-section.js';
     import { initLenis } from './js/components/lenis.js';
     
     // Initialize Navigation & Components
@@ -476,6 +480,13 @@
         new CompletedProjectsSection();
       } catch (err) {
         console.error('CompletedProjectsSection Initialization Error:', err);
+      }
+
+      try {
+        const reviewsRoot = document.querySelector('[data-reviews-root]');
+        if (reviewsRoot) new ReviewsSection(reviewsRoot);
+      } catch (err) {
+        console.error('ReviewsSection Initialization Error:', err);
       }
 
       // ============================================================

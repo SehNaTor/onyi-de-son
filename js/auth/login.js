@@ -2,10 +2,9 @@ import { AuthService } from './authService.js';
 import { Validators } from './validators.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
-  // Check if already authenticated, if so, redirect immediately
-  const { session } = await AuthService.getSession();
-  if (session) {
-    window.location.href = 'admin.html';
+  const { session, error } = await AuthService.getSession();
+  if (session && !error) {
+    window.location.replace('admin.html');
     return;
   }
 
@@ -105,14 +104,14 @@ document.addEventListener('DOMContentLoaded', async () => {
       if (error) {
         throw error;
       }
-      
-      // Success Animation & Redirect
-      showAlert('Login Successful. Redirecting...', 'success');
-      
-      // Artificial delay for smooth UX transition
-      setTimeout(() => {
-        window.location.href = 'admin.html';
-      }, 1000);
+
+      if (data?.session) {
+        window.location.replace('admin.html');
+        return;
+      }
+
+      showAlert('Authentication failed. Please try again.', 'error');
+      setLoading(false);
 
     } catch (err) {
       console.error('Login Error:', err);

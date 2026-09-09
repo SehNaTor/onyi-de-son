@@ -4,6 +4,7 @@ import { ProjectsController } from './projects.js';
 import { ProductsController } from './products.js';
 import { ContactsController } from './contacts.js';
 import { BlogController } from './blog.js';
+import { ReviewsController } from './reviews.js';
 import { UI } from './ui.js';
 import { AuthService } from '../auth/authService.js';
 
@@ -14,6 +15,7 @@ window.ProjectsController = ProjectsController;
 window.ProductsController = ProductsController;
 window.ContactsController = ContactsController;
 window.BlogController = BlogController;
+window.ReviewsController = ReviewsController;
 window.UI = UI;
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -69,8 +71,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       sidebar.classList.remove('is-open');
     }
 
-    // Hide "Add New" button on Dashboard and Contacts
-    if (viewName === 'dashboard' || viewName === 'contacts') {
+    // Hide "Add New" button on Dashboard, Contacts, and Reviews
+    if (viewName === 'dashboard' || viewName === 'contacts' || viewName === 'reviews') {
       if (btnAddNew) btnAddNew.style.display = 'none';
     } else {
       if (btnAddNew) btnAddNew.style.display = 'inline-flex';
@@ -95,6 +97,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         break;
       case 'contacts':
         await ContactsController.renderView(contentArea);
+        break;
+      case 'reviews':
+        await ReviewsController.renderView(contentArea);
         break;
     }
   };
@@ -138,6 +143,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     loadView('projects');
   } else if (hash === 'products') {
     loadView('products');
+  } else if (hash === 'reviews') {
+    loadView('reviews');
   } else if (hash === 'contacts') {
     loadView('contacts');
   } else {
