@@ -6,7 +6,7 @@
 
 const CONFIG = {
   company: {
-    name: "Onyi De Son of Grace Nig Ltd",
+    name: "Onyii De Son of Grace Nig Ltd",
     phone: "+234 123 456 7890", // Placeholder for actual number
     email: "info@onyideson.com",
   },

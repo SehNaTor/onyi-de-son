@@ -458,24 +458,11 @@ export class SiteFooter {
 
             <p class="site-footer__copyright">
               &copy; ${new Date().getFullYear()}
-              Onyi De Son of Grace Nig Ltd. All rights reserved.
+              Onyii De Son of Grace Nig Ltd. All rights reserved.
             </p>
 
             <div class="site-footer__legal-links">
 
-              <a
-                href="#"
-                class="site-footer__legal-link focus-ring"
-              >
-                Privacy Policy
-              </a>
-
-              <a
-                href="#"
-                class="site-footer__legal-link focus-ring"
-              >
-                Terms of Service
-              </a>
 
             </div>
 
