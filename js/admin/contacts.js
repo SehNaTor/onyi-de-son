@@ -66,7 +66,8 @@ export const ContactsController = {
     tbody.innerHTML = currentContacts.map((item) => {
       const createdAt = item.created_at ? new Date(item.created_at).toLocaleString() : 'Unknown';
       const fullDescription = item.description ? String(item.description).trim() : 'No description provided';
-      const emailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${item.email || ''}`;
+      const { mailtoUrl } = this.getEmailUrls(item.email, item.name, fullDescription);
+
       return `
         <tr>
           <td>
@@ -81,9 +82,15 @@ export const ContactsController = {
             <button class="btn-icon" onclick="window.ContactsController.viewItem('${item.id}')" aria-label="View details">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"></path><circle cx="12" cy="12" r="3"></circle></svg>
             </button>
-            <a class="btn-icon" href="${emailUrl}" target="_blank" rel="noopener noreferrer" aria-label="Reply via Gmail">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-            </a>
+            ${mailtoUrl ? `
+              <a class="btn-icon" href="${mailtoUrl}" aria-label="Reply via Gmail / Mail App" title="Reply via Gmail App">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              </a>
+            ` : `
+              <button class="btn-icon" onclick="window.UI.showToast('No email address provided for this contact.', 'warning')" aria-label="No email provided" title="No email provided">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity: 0.35;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              </button>
+            `}
             <button class="btn-icon text-danger" onclick="window.ContactsController.deleteItem('${item.id}')" aria-label="Delete">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
             </button>
@@ -93,9 +100,36 @@ export const ContactsController = {
     }).join('');
   },
 
+  getEmailUrls(email, name, description) {
+    const rawEmail = (email || '').trim();
+    if (!rawEmail) {
+      return { mailtoUrl: '', webGmailUrl: '' };
+    }
+
+    const subject = encodeURIComponent('Regarding your inquiry - Onyii De Son of Grace');
+    const quoteSnippet = description && description.length > 250 
+      ? description.substring(0, 250) + '...' 
+      : (description || '');
+    const greeting = name ? `Hi ${name.trim()},` : 'Hello,';
+    const body = encodeURIComponent(
+      `${greeting}\n\nThank you for contacting Onyii De Son of Grace Global Tarpaulin.\n\nIn response to your inquiry:\n"${quoteSnippet}"\n\n`
+    );
+
+    // Standard mailto protocol invokes native email applications (Gmail app on Android/iOS/desktop) directly to compose
+    const mailtoUrl = `mailto:${encodeURIComponent(rawEmail)}?subject=${subject}&body=${body}`;
+    
+    // Web fallback for desktop browsers when users specifically prefer webmail
+    const webGmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(rawEmail)}&su=${subject}&body=${body}`;
+
+    return { mailtoUrl, webGmailUrl };
+  },
+
   async viewItem(id) {
     const item = currentContacts.find((contact) => String(contact.id) === String(id));
     if (!item) return;
+
+    const fullDescription = item.description ? String(item.description).trim() : 'No description provided';
+    const { mailtoUrl, webGmailUrl } = this.getEmailUrls(item.email, item.name, fullDescription);
 
     UI.openModal('admin-modal', 'Contact Details');
     const modalBody = document.getElementById('modal-body');
@@ -107,17 +141,37 @@ export const ContactsController = {
         </div>
         <div class="form-group">
           <label>Email</label>
-          <div><a href="https://mail.google.com/mail/?view=cm&fs=1&to=${this.escape(item.email || '')}" target="_blank" rel="noopener noreferrer">${this.escape(item.email || '—')}</a></div>
+          <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+            ${mailtoUrl ? `
+              <a href="${mailtoUrl}" style="color: var(--admin-primary); font-weight: 600; text-decoration: underline;" title="Compose in Gmail / Mail App">
+                ${this.escape(item.email)}
+              </a>
+              <span style="font-size: 0.75rem; color: var(--admin-text-muted);">(Launches Gmail App)</span>
+              <a href="${webGmailUrl}" target="_blank" rel="noopener noreferrer" class="btn-outline" style="padding: 0.2rem 0.5rem; font-size: 0.75rem; margin-left: auto;" title="Open in Web Gmail (Browser)">
+                Open in Web Gmail
+              </a>
+            ` : `
+              <span>${this.escape(item.email || '—')}</span>
+            `}
+          </div>
         </div>
         <div class="form-group">
           <label>Description / Full Message</label>
-          <div class="admin-modal-message-view">${this.escape(item.description || 'No description provided')}</div>
+          <div class="admin-modal-message-view">${this.escape(fullDescription)}</div>
         </div>
         <div class="form-group">
           <label>Created</label>
           <div>${this.escape(item.created_at ? new Date(item.created_at).toLocaleString() : 'Unknown')}</div>
         </div>
-        <div class="modal-actions">
+        <div class="modal-actions" style="display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            ${mailtoUrl ? `
+              <a href="${mailtoUrl}" class="btn-primary" style="display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 16px; height: 16px;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                Reply via Gmail App
+              </a>
+            ` : ''}
+          </div>
           <button type="button" class="btn-outline" onclick="window.UI.closeModal('admin-modal')">Close</button>
         </div>
       </div>
