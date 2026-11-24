@@ -107,12 +107,12 @@ export const ContactsController = {
     }
 
     const subject = encodeURIComponent('Regarding your inquiry - Onyii De Son of Grace');
-    const quoteSnippet = description && description.length > 250 
-      ? description.substring(0, 250) + '...' 
-      : (description || '');
+    // const quoteSnippet = description && description.length > 250 
+    //   ? description.substring(0, 250) + '...' 
+    //   : (description || '');
     const greeting = name ? `Hi ${name.trim()},` : 'Hello,';
     const body = encodeURIComponent(
-      `${greeting}\n\nThank you for contacting Onyii De Son of Grace Global Tarpaulin.\n\nIn response to your inquiry:\n"${quoteSnippet}"\n\n`
+      `${greeting}\n\nThank you for contacting Onyii De Son of Grace Global Tarpaulin.\n\nIn response to your inquiry:\n\n\n`
     );
 
     // Standard mailto protocol invokes native email applications (Gmail app on Android/iOS/desktop) directly to compose
