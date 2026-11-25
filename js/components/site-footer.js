@@ -91,7 +91,7 @@ export class SiteFooter {
                 </svg>
 
                 <span>
-                  248 Agege Motor Road, Mushin, Lagos
+                  248 Agege Motor Road, Mushin, Lagos, Nigeria.
                 </span>
 
               </p>
